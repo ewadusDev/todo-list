@@ -12,9 +12,9 @@ const SignUpPage = () => {
 
   return (
     <section className="flex items-center justify-center w-[450px] h-[600px] bg-white rounded-3xl">
-      <div className="w-full px-12 border">
-        <h1 className="text-3xl font-bold">Sign up</h1>
-        <form className="flex flex-col gap-2">
+      <div className="w-full px-12">
+        <h1 className="text-3xl font-bold my-2">Sign up</h1>
+        <form className="flex flex-col gap-5">
           <input type="text" name="firstname" placeholder="First Name" className="h-10 w-full border rounded-xl px-2" />
           <input type="text" name="lastname" placeholder="Last Name" className="h-10 w-full border rounded-xl px-2" />
           <input type="email" name="email" placeholder="E-mail address" className="h-10 w-full border rounded-xl px-2" />
@@ -36,7 +36,7 @@ const SignUpPage = () => {
           </div>
           <Button name="Sign Up" type="submit" />
         </form>
-        <p>Don&apos;t have an account? <span><Link href={"/signin"} className="font-semibold hover:underline text-blue-500">Sign in</Link></span></p>
+        <p className="mt-2 text-center">Don&apos;t have an account? <span><Link href={"/signin"} className="font-semibold hover:underline text-blue-500">Sign in</Link></span></p>
 
 
       </div>

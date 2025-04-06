@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Sidenav from "./ui/sidebar/sidenav";
 
 
 export const metadata: Metadata = {
@@ -14,7 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex justify-center h-screen p-3 gap-5">
+        <Sidenav />
         {children}
       </body>
     </html>

@@ -13,9 +13,11 @@ const WelcomePage = () => {
                     A todo list app is a digital task management tool designed to help users organize
                     and prioritize their daily activities and responsibilities.
                 </p>
-                <Button name="Get Started" type="button" />
+                <Link href={"/"} className="w-full">
+                    <Button name="Get Started" type="button" />
+                </Link>
                 <p className="text-gray-500">
-                    Already have an account? 
+                    Already have an account?
                     <Link href={"/signin"} className="font-semibold hover:underline text-blue-500">
                         Sign In
                     </Link>
