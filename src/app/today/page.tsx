@@ -1,8 +1,12 @@
+
 import { mockData } from "@/lib/data";
 import TodoList from "../ui/home/todolist";
+import { createTodo } from "@/lib/actions";
 
 
-const Today = () => {
+
+const Today = async () => {
+   await createTodo()
     return (
         <main className="w-[900px] rounded-4xl flex flex-col justify-between">
             <h1 className="text-5xl">Today</h1>

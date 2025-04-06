@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17.4
+    container_name: my_postgres
+    volumes: 
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+       POSTGRES_USER: admin
+       POSTGRES_PASSWORD: secret
+       POSTGRES_DB: mydatabase
+       POSTGRES_PRISMA_URL: postgresql://admin:secret@postgres:5432/mydatabase
+       POSTGRES_URL_NON_POOLING: postgresql://admin:secret@postgres:5432/mydatabase
+
+  pgadmin:
+    image: dpage/pgadmin4:9.1.0
+    container_name: my_pgadmin
+    restart: always
+    environment:
+       PGADMIN_DEFAULT_EMAIL: admin@example.com
+       PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - 5050:80 
+    depends_on:
+      - postgres
+    volumes:
+      - pg_admin_data:/var/lib/pgadmin    
+volumes:
+  pg_data:
+  pg_admin_data:
