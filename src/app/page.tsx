@@ -1,8 +1,8 @@
-import { mockData } from "@/lib/data";
+
 import TodoList from "./ui/home/todolist";
 
+export default async function Home() {
 
-export default function Home() {
   return (
     <main className="w-[900px]">
       <h1 className="text-5xl">Upcoming</h1>
@@ -17,9 +17,9 @@ export default function Home() {
 
         {/*  todo overall */}
         <div className="grid grid-cols-2 gap-7 w-[700px]">
-          <TodoList title="Today" data={mockData} className="col-span-2" />
-          <TodoList title="Tomorrow" data={mockData} />
-          <TodoList title="This Week" data={mockData} />
+          <TodoList title="Test" className="col-span-2" />
+          {/* <TodoList title="Tomorrow" data={mockData} />
+          <TodoList title="This Week" data={mockData} /> */}
         </div>
 
       </div>

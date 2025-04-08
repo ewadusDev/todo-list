@@ -1,6 +1,3 @@
-
-
-
 type ButtonProp = {
     name: string,
     action?: () => void,

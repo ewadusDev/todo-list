@@ -30,9 +30,9 @@ const Sidenav = () => {
                                 <FaArrowRight />Upcoming
                             </li>
                         </Link>
-                        <Link href={"/today"}>
+                        {/* <Link href={"/today"}>
                             <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2"><CiCircleList />Today </li>
-                        </Link>
+                        </Link> */}
 
                     </ul>
                 </div>
