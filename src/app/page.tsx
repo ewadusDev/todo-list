@@ -17,7 +17,7 @@ export default async function Home() {
 
         {/*  todo overall */}
         <div className="grid grid-cols-2 gap-7 w-[700px]">
-          <TodoList title="Test" className="col-span-2" />
+          <TodoList title="" className="col-span-2" />
           {/* <TodoList title="Tomorrow" data={mockData} />
           <TodoList title="This Week" data={mockData} /> */}
         </div>

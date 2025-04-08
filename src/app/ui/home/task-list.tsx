@@ -5,8 +5,7 @@ import { useActionState, useEffect, useState } from "react"
 
 
 
-const TaskList = ({ todo }: { todo: { id: string, is_done: boolean, task: string } }) => {
-    const initialState: State = { errors: {}, message: null }
+const TaskList = ({ todo }: { todo: { id: string, task: string, is_done: boolean } }) => {    const initialState: State = { errors: {}, message: '' }
     const [state, formAction] = useActionState(updateCheckbox, initialState)
     const [stateMessage, setStateMessage] = useState<string>("")
 
@@ -30,7 +29,6 @@ const TaskList = ({ todo }: { todo: { id: string, is_done: boolean, task: string
             {stateMessage && <p> {stateMessage}</p>}
             <input type="hidden" name="id" value={todo.id} />
             <input type="hidden" name="is_done" value={(!todo.is_done).toString()} />
-            <input type="hidden" name="task" value={todo.task} />
             <input type="checkbox"
                 defaultChecked={todo.is_done}
                 onChange={(e) => e.currentTarget.form?.requestSubmit()}

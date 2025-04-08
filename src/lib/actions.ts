@@ -13,7 +13,7 @@ export type State = {
         task?: string[]
         is_done?: string[]
     },
-    message?: string | null
+    message: string
 }
 
 const FormSchema = z.object({
@@ -23,7 +23,7 @@ const FormSchema = z.object({
     task: z.string({
         invalid_type_error: "Please enter a task"
     }),
-    is_done: z.boolean({
+    is_done: z.coerce.boolean({
         invalid_type_error: "Please check the checkbox"
     }),
     time: z.number()
@@ -62,45 +62,20 @@ export async function createTodo(formData: FormData) {
     }
 }
 
-
-// const UpdateCheckbox = FormSchema.omit({ time: true });
-
 export async function updateCheckbox(prevState: State, formData: FormData) {
     const validatedFields = {
         id: formData.get("id"),
         is_done: formData.get("is_done")
     }
-
-    // const validatedFields = UpdateCheckbox.safeParse({
-    //     id: formData.get("id"),
-    //     is_done: formData.get("is_done")
-    // })
-
-
-    // if (!validatedFields.success) {
-    //     // console.error('❌ Validation failed:', validatedFields.error.flatten().fieldErrors);
-    //     return {
-    //         errors: validatedFields.error.flatten().fieldErrors,
-    //         message: "Todo update failed"
-    //     }
-
-    // }
-
-    // const { id, task, is_done } = validatedFields.data
-
-
-
-    // console.log("taskID", validatedFields.id)
-    console.log("status", validatedFields.is_done)
-
+    
+    const { id, is_done } = validatedFields
 
     try {
         await pool.query(
             'UPDATE todos SET is_done = $1 WHERE id = $2',
-            [validatedFields.is_done, validatedFields.id]
+            [is_done, id]
         )
         revalidatePath('/');
-
         return {
             message: "Todo updated successfully!"
         }

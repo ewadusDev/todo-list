@@ -12,9 +12,7 @@ type TodoListProps = {
 
 
 const TodoList = async ({ title, className }: TodoListProps) => {
-
     const todoLists = await getTodos()
-
 
     return (
         <section className={`w-full ${className}  rounded-4xl p-5 shadow-md border`}>
