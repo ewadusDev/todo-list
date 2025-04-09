@@ -27,13 +27,15 @@ const Sidenav = () => {
                     <ul className="flex flex-col gap-3.5 ">
                         <Link href={"/"}>
                             <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2">
-                                <FaArrowRight />Upcoming
+                                <FaArrowRight />Overview
                             </li>
                         </Link>
-                        {/* <Link href={"/today"}>
-                            <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2"><CiCircleList />Today </li>
-                        </Link> */}
-
+                        <Link href={"/todo"}>
+                            <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2"><CiCircleList />Todo </li>
+                        </Link>
+                        <Link href={"/done"}>
+                            <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2"><CiCircleList />Done </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

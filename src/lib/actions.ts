@@ -67,7 +67,7 @@ export async function updateCheckbox(prevState: State, formData: FormData) {
         id: formData.get("id"),
         is_done: formData.get("is_done")
     }
-    
+
     const { id, is_done } = validatedFields
 
     try {
@@ -133,4 +133,17 @@ export async function getTodos() {
         throw new Error('Database query failed');
     }
 
+}
+
+
+export async function deleteTodo(id: string) {
+    try {
+        await pool.query('DELETE FROM todos WHERE id = $1', [id]);
+        revalidatePath('/');
+        console.log('✅ Todo deleted successfully!');
+    } catch (err) {
+        console.error(err);
+        revalidatePath('/');
+        throw new Error('Database delete failed');
+    }
 }

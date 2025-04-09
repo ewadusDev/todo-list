@@ -2,6 +2,7 @@
 import { createTodo, getTodos } from "@/lib/actions";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import TaskList from "./task-list";
+import { TrashButton } from "../button";
 
 
 type TodoListProps = {
@@ -26,10 +27,12 @@ const TodoList = async ({ title, className }: TodoListProps) => {
                 <ul>
                     {todoLists?.map((todo) => {
                         return (
-                            <li key={todo.id} className="border-b-2 px-2 py-3 flex gap-5">
-                                <span>
-                                    <TaskList todo={todo} /></span>
-                                {todo.task}
+                            <li key={todo.id} className="group border-b-2 px-2 py-3 flex justify-between items-center ">
+                                <div className="flex gap-5">
+                                    <TaskList todo={todo} />
+                                    <p>{todo.task}</p>
+                                </div>
+                                <TrashButton id={todo.id} />
                             </li>
                         )
                     })}

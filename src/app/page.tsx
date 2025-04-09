@@ -4,9 +4,9 @@ import TodoList from "./ui/home/todolist";
 export default async function Home() {
 
   return (
-    <main className="w-[900px]">
+    <main className="w-[900px] ">
       <h1 className="text-5xl">Upcoming</h1>
-      <div className="h-full w-full flex flex-col items-center justify-center">
+      <div className=" w-full flex flex-col items-center justify-center">
         {/* Main Welcome Content*/}
 
         {/* <div className=" flex flex-col items-center justify-center px-28 gap-10">
@@ -17,7 +17,7 @@ export default async function Home() {
 
         {/*  todo overall */}
         <div className="grid grid-cols-2 gap-7 w-[700px]">
-          <TodoList title="" className="col-span-2" />
+          <TodoList title="" className="col-span-2 overflow-scroll" />
           {/* <TodoList title="Tomorrow" data={mockData} />
           <TodoList title="This Week" data={mockData} /> */}
         </div>
