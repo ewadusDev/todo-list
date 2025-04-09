@@ -1,40 +1,30 @@
-"use client"
 
-import { updateCheckbox, type State } from "@/lib/actions"
-import { useActionState, useEffect, useState } from "react"
-
+import TaskCheckbox from "./task-checkbox"
+import { TrashButton } from "../button"
 
 
-const TaskList = ({ todo }: { todo: { id: string, task: string, is_done: boolean } }) => {    const initialState: State = { errors: {}, message: '' }
-    const [state, formAction] = useActionState(updateCheckbox, initialState)
-    const [stateMessage, setStateMessage] = useState<string>("")
-
-    useEffect(() => {
-        setStateMessage(state.message || '')
-
-        if (state.message) {
-            const timeout = setTimeout(() => {
-                setStateMessage('')
-            }, 1000)
-
-            return () => clearTimeout(timeout) // cleanup if unmounted
-        }
-    }, [state.message])
 
 
+
+const TaskList = ({ data }: { data: { id: string, is_done: boolean, task: string }[] }) => {
 
     return (
-
-        <form action={formAction}>
-            {stateMessage && <p> {stateMessage}</p>}
-            <input type="hidden" name="id" value={todo.id} />
-            <input type="hidden" name="is_done" value={(!todo.is_done).toString()} />
-            <input type="checkbox"
-                defaultChecked={todo.is_done}
-                onChange={(e) => e.currentTarget.form?.requestSubmit()}
-            />
-        </form>
-
+        <ul>
+            {data?.map((todo) => {
+                return (
+                    <li key={todo.id} className="group border-b-2 px-2 py-3 flex justify-between items-center ">
+                        <div className="flex gap-5">
+                            <TaskCheckbox todo={todo} />
+                            <p>{todo.task}</p>
+                        </div>
+                        <TrashButton id={todo.id} />
+                    </li>
+                )
+            })}
+        </ul>
     )
+
 }
+
 export default TaskList
+
