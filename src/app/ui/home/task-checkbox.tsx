@@ -17,7 +17,7 @@ const TaskCheckbox = ({ todo }: { todo: { id: string, task: string, is_done: boo
                 setStateMessage('')
             }, 1000)
 
-            return () => clearTimeout(timeout) // cleanup if unmounted
+            return () => clearTimeout(timeout)
         }
     }, [state.message])
 
