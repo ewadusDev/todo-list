@@ -123,10 +123,12 @@ export const seedDatabase = async () => {
     }
 }
 
-export async function getTodos() {
+
+
+export async function getTodos(query: string) {
 
     try {
-        const response = await pool.query('SELECT * FROM todos');
+        const response = await pool.query('SELECT * FROM todos WHERE task LIKE $1', [`%${query}%`]);
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);
@@ -134,6 +136,7 @@ export async function getTodos() {
     }
 
 }
+
 
 
 export async function deleteTodo(id: string) {

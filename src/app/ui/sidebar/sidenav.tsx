@@ -1,8 +1,8 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdSearch } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
 import { CiCircleList } from "react-icons/ci";
 import Link from "next/link";
+import SearchBox from "./search-box";
 
 
 const Sidenav = () => {
@@ -15,11 +15,13 @@ const Sidenav = () => {
                 </div>
 
                 <div className="flex flex-col">
+
+                    {/* Search */}
                     <div className="relative">
-                        <input className="w-full h-10 border rounded-2xl px-2"
-                            type="text" placeholder="     Search" />
-                        <IoMdSearch className="absolute top-1/2 left-3 -translate-y-1/2" />
+                        <SearchBox />
                     </div>
+
+
                 </div>
 
                 <div className="flex flex-col gap-5 mt-5">
