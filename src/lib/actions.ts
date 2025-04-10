@@ -147,3 +147,38 @@ export async function deleteTodo(id: string) {
         throw new Error('Database delete failed');
     }
 }
+
+
+export async function updateTask(prevState: State, formData: FormData) {
+    const validatedFields = {
+        id: formData.get("id"),
+        task: formData.get("task")
+    }
+
+    const { id, task } = validatedFields
+
+    try {
+        pool.query(
+            'UPDATE todos SET task = $1 WHERE id = $2',
+            [task, id]
+        )
+        revalidatePath('/');
+        return {
+            errors: {},
+            message: "Todo updated successfully!"
+        }
+
+
+    } catch (err) {
+        revalidatePath('/');
+        console.error(err)
+        return {
+            errors: {
+                id: [id?.toString() || ""],
+                task: [task?.toString() || ""],
+            },
+            message: "Todo update failed"
+        }
+    }
+
+}

@@ -3,6 +3,7 @@
 import TaskCheckbox from "./task-checkbox"
 import { TrashButton } from "../button"
 import { useState, useEffect } from "react"
+import TaskEdit from "./task-edit"
 
 
 type todoProps = {
@@ -44,7 +45,8 @@ const TaskList = ({ data }: { data: todoProps[] }) => {
                         <li key={todo.id} className="group border-b-2 px-2 py-3 flex justify-between items-center ">
                             <div className="flex gap-5">
                                 <TaskCheckbox todo={todo} />
-                                <p>{todo.task}</p>
+                                {/* <p>{todo.task}</p> */}
+                                <TaskEdit id={todo.id} task={todo.task} />
                             </div>
                             <TrashButton id={todo.id} />
                         </li>
