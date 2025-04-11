@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sidenav from "./ui/sidebar/sidenav";
+import SessionWrapper from "./SessionWrapper";
 
 
 export const metadata: Metadata = {
@@ -14,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="flex justify-center h-screen p-3 gap-5">
-        <Sidenav />
-        {children}
-      </body>
-    </html>
+    <SessionWrapper>
+      <html lang="en">
+        <body className="flex justify-center h-screen p-3 gap-5">
+          <Sidenav />
+          {children}
+        </body>
+      </html>
+   </SessionWrapper>
   );
 }

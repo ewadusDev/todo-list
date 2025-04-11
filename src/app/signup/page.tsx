@@ -1,20 +1,23 @@
 "use client"
 import Link from "next/link"
-import Button from "../ui/button"
+import { Button } from "../ui/button"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useActionState, useState } from "react";
+import { createUser } from "@/lib/actions";
 
 
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showRePassword, setShowRePassword] = useState<boolean>(false);
+  const [state, formAction] = useActionState(createUser, "")
+  console.log(state)
 
   return (
     <section className="flex items-center justify-center w-[450px] h-[600px] bg-white rounded-3xl">
       <div className="w-full px-12">
         <h1 className="text-3xl font-bold my-2">Sign up</h1>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" action={formAction}>
           <input type="text" name="firstname" placeholder="First Name" className="h-10 w-full border rounded-xl px-2" />
           <input type="text" name="lastname" placeholder="Last Name" className="h-10 w-full border rounded-xl px-2" />
           <input type="email" name="email" placeholder="E-mail address" className="h-10 w-full border rounded-xl px-2" />
@@ -29,7 +32,7 @@ const SignUpPage = () => {
 
           {/* Confirm Password Field */}
           <div className="relative h-10 w-full border rounded-xl">
-            <input type={showRePassword ? "text" : "password"}  name="repassword" placeholder="*********" className="w-full h-full px-2 pr-10"/>
+            <input type={showRePassword ? "text" : "password"} name="cfpassword" placeholder="*********" className="w-full h-full px-2 pr-10" />
             <button type="button" className="absolute top-1/2 right-3 -translate-y-1/2" onClick={() => setShowRePassword(!showRePassword)}>
               {showRePassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </button>
