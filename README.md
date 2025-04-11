@@ -8,10 +8,21 @@ Features
 - Authentication
   - sign in  ✅
   - sign out ✅
-  - middleware  
+  - middleware  ✅
 - improve ui
-
+  - theme
+  - responsive
 
 Infra
 - postgres  ✅
-- dockerize image
+- dockerize image ✅
+- nginx
+- redis
+
+Testing
+  - Unit Test
+    - Jest
+  - E2E
+    - Playwright
+  - Performance
+    - k6

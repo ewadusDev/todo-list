@@ -6,6 +6,7 @@ import { useActionState, useEffect, useState } from "react"
 const TaskCheckbox = ({ todo }: { todo: { id: string, task: string, is_done: boolean } }) => {
     const initialState: State = { errors: {}, message: '' }
     const [state, formAction] = useActionState(updateCheckbox, initialState)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [stateMessage, setStateMessage] = useState<string>("")
 
 
@@ -24,7 +25,6 @@ const TaskCheckbox = ({ todo }: { todo: { id: string, task: string, is_done: boo
 
     return (
         <form action={formAction}>
-            {stateMessage && <p> {stateMessage}</p>}
             <input type="hidden" name="id" value={todo.id} />
             <input type="hidden" name="is_done" value={(!todo.is_done).toString()} />
             <input type="checkbox"

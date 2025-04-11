@@ -31,7 +31,7 @@ const FormSchema = z.object({
 
 })
 
-export async function createTodo(formData: FormData) {
+export async function createTodo(userId: string, formData: FormData) {
     const rawData = {
         id: uuid.v4(),
         task: formData.get("task"),
@@ -49,10 +49,11 @@ export async function createTodo(formData: FormData) {
 
     const { id, task, time, is_done } = parse.data
 
+
     try {
         await pool.query(
-            'INSERT INTO todos (id, task, time, is_done) VALUES ($1, $2, $3, $4)',
-            [id, task, time, is_done]
+            'INSERT INTO todos (id, task, time, is_done, uid) VALUES ($1, $2, $3, $4, $5)',
+            [id, task, time, is_done, userId]
         )
         console.log('✅ Todo created successfully!');
 
@@ -98,19 +99,41 @@ export async function updateCheckbox(prevState: State, formData: FormData) {
 export const seedDatabase = async () => {
 
     try {
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS users (
+              id UUID PRIMARY KEY,
+              firstname TEXT NOT NULL,
+              lastname TEXT NOT NULL,
+              email TEXT NOT NULL,
+              password TEXT NOT NULL)
+            `)
+
         await pool.query(`
             CREATE TABLE IF NOT EXISTS todos (
               id UUID PRIMARY KEY,
               task TEXT NOT NULL,
               time BIGINT NOT NULL,
-              is_done BOOLEAN DEFAULT FALSE
+              is_done BOOLEAN DEFAULT FALSE,
+              uid UUID REFERENCES users(id)
             );
           `);
 
+
+
+        // Insert a dummy user
+        const { userId, firstname, lastname, email, password } = { userId: uuid.v4(), firstname: "Steve", lastname: "Keosung", email: "steve@hotmail.com", password: "123456" }
+        const hashPassword = await bcrypt.hash(password, 10)
+
+        await pool.query(
+            'INSERT INTO users (id, firstname, lastname, email, password) VALUES($1, $2, $3, $4, $5)',
+            [userId, firstname, lastname, email, hashPassword]
+        );
+
         for (const todo of sampleTodos) {
             await pool.query(
-                'INSERT INTO todos (id, task, time, is_done) VALUES ($1, $2, $3, $4)',
-                [todo.id, todo.task, todo.time, todo.is_done]
+                'INSERT INTO todos (id, task, time, is_done, uid) VALUES ($1, $2, $3, $4, $5)',
+                [todo.id, todo.task, todo.time, todo.is_done, userId]
             );
         }
         console.log('✅ Seeded todos successfully!');
@@ -119,17 +142,17 @@ export const seedDatabase = async () => {
         console.error('❌ DB Error:', error);
         throw new Error('Database insert failed');
     } finally {
-        pool.end();
+        // pool.end();
         console.log('Database connection closed');
     }
 }
 
 
 
-export async function getTodos(query: string) {
+export async function getTodos(query: string, userId: string) {
 
     try {
-        const response = await pool.query('SELECT * FROM todos WHERE task LIKE $1', [`%${query}%`]);
+        const response = await pool.query('SELECT * FROM todos WHERE task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);
@@ -137,7 +160,6 @@ export async function getTodos(query: string) {
     }
 
 }
-
 
 
 export async function deleteTodo(id: string) {

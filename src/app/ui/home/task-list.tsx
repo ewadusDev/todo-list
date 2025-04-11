@@ -14,12 +14,12 @@ type todoProps = {
 }
 
 
-
 const TaskList = ({ data }: { data: todoProps[] }) => {
+
     const [isSorted, setIsSorted] = useState<boolean>(false)
     const sortAsc = (items: todoProps[]) => [...items].sort((a, b) => Number(a.time) - Number(b.time))
     const sortDesc = (items: todoProps[]) => [...items].sort((a, b) => Number(b.time) - Number(a.time))
-    const [lists, setLists] = useState<todoProps[]>(sortDesc(data)) // default initial
+    const [lists, setLists] = useState<todoProps[]>(sortDesc(data))
 
     const handleToggle = () => {
         const sorted = isSorted ? sortDesc(data) : sortAsc(data)
@@ -45,7 +45,6 @@ const TaskList = ({ data }: { data: todoProps[] }) => {
                         <li key={todo.id} className="group border-b-2 px-2 py-3 flex justify-between items-center ">
                             <div className="flex gap-5">
                                 <TaskCheckbox todo={todo} />
-                                {/* <p>{todo.task}</p> */}
                                 <TaskEdit id={todo.id} task={todo.task} />
                             </div>
                             <TrashButton id={todo.id} />
