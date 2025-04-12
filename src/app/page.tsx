@@ -8,14 +8,7 @@ export default async function Home(props: { searchParams?: Promise<{ query: stri
   return (
     <main className="w-[900px] ">
       <h1 className="text-5xl">Upcoming</h1>
-      <div className=" w-full flex flex-col items-center justify-center">
-        {/* Main Welcome Content*/}
-
-        {/* <div className=" flex flex-col items-center justify-center px-28 gap-10">
-          <h1 className="text-5xl">Welcome to ToDoPy</h1>
-          <p>A to-do app is a simple, user-friendly digital tool designed to help individuals and teams organize tasks and manage their daily activities efficiently. Users can create, edit, and prioritize tasks, set deadlines or reminders, categorize items, and track their progress, all within an intuitive and accessible interface. These apps are essential for improving productivity, reducing stress, and ensuring that important responsibilities are not forgotten.</p>
-          <button className="bg-green-400 px-5 py-2 rounded-2xl mt-5 hover:bg-green-500">Go to tasks</button>
-        </div> */}
+      <div className=" w-full flex flex-col items-center justify-center">     
 
         {/*  todo overall */}
         <div className="grid grid-cols-2 gap-7 w-[700px]">

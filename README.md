@@ -21,7 +21,7 @@ Infra
 
 Testing
   - Unit Test
-    - Jest
+    - Jest https://www.youtube.com/watch?v=rBpzxTD_9T0
   - E2E
     - Playwright
   - Performance
