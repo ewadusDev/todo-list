@@ -17,11 +17,12 @@ export default function RootLayout({
   return (
     <SessionWrapper>
       <html lang="en">
-        <body className="flex justify-center h-screen p-3 gap-5">
-          <Sidenav />
+        {/* <body className="flex justify-center h-screen p-3 gap-5"> */}
+        <body className="bg-[#F5F5F5]">
+          {/* <Sidenav /> */}
           {children}
         </body>
       </html>
-   </SessionWrapper>
+    </SessionWrapper>
   );
 }

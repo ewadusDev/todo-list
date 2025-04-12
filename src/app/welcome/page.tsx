@@ -18,7 +18,7 @@ const WelcomePage = () => {
                 </Link>
                 <p className="text-gray-500">
                     Already have an account?
-                    <Link href={"/signin"} className="font-semibold hover:underline text-blue-500">
+                    <Link href={"/login"} className="font-semibold hover:underline text-blue-500">
                         Sign In
                     </Link>
                 </p>

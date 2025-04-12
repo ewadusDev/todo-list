@@ -39,7 +39,7 @@ const SignUpPage = () => {
           </div>
           <Button name="Sign Up" type="submit" />
         </form>
-        <p className="mt-2 text-center">Don&apos;t have an account? <span><Link href={"/signin"} className="font-semibold hover:underline text-blue-500">Sign in</Link></span></p>
+        <p className="mt-2 text-center">Don&apos;t have an account? <span><Link href={"/login"} className="font-semibold hover:underline text-blue-500">Sign in</Link></span></p>
 
 
       </div>

@@ -59,7 +59,7 @@ const Sidenav = () => {
                             </li>
 
                         ) : (
-                            <Link href={"/signin"}>
+                            <Link href={"/login"}>
                                 <li className="flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer rounded-2xl px-2"><CiCircleList />Login</li>
                             </Link>
                         )}
