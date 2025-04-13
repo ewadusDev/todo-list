@@ -5,7 +5,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Logo from "../ui/svg/Logo";
+import Logo from "../ui/svg/LogoIcon";
 
 
 const SignInPage = () => {
