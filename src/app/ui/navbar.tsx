@@ -30,7 +30,7 @@ const Navbar = () => {
         <nav className="bg-[#1C78C3] h-[48px] ">
             <div className="flex justify-between items-center w-full h-full px-7">
                 <div className="flex items-center gap-2">
-                    <LogoIcon fill="white" className="w-9" />
+                    <LogoIcon className="w-9" />
                     <h2 className="font-semibold text-white">To-Do List</h2>
                 </div>
                 {/* Search */}

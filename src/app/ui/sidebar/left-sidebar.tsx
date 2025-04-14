@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 import CheckedIcon from "../svg/CheckedIcon"
-import HamburgerIcon from "../svg/HamburgerIcon"
-import StarIcon from "../svg/StarIcon"
+import FavoriteIcon from "../svg/FavoriteIcon"
 import SunIcon from "../svg/SunIcon"
 import TrashIcon from "../svg/TrashIcon"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
+import ColapIcon from "../svg/ColapIcon"
 
 
 
-const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "Starred", icon: StarIcon, path: "favorite" }, { name: "Trash", icon: TrashIcon, path: "trash" }, { name: "Done", icon: CheckedIcon, path: "done" }]
+const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "Starred", icon: FavoriteIcon, path: "favorite" }, { name: "Trash", icon: TrashIcon, path: "trash" }, { name: "Done", icon: CheckedIcon, path: "done" }]
 
 
 const LeftSidebar = () => {
@@ -24,7 +24,7 @@ const LeftSidebar = () => {
         return (
             <aside className="pt-8 ">
                 <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
-                    <HamburgerIcon width={32} height={32} />
+                    <ColapIcon width={32} height={32} />
                 </button>
 
             </aside>
@@ -36,7 +36,7 @@ const LeftSidebar = () => {
         <aside className={`${isShown ? 'block' : 'hidden'} absolute left-0   w-[300px] h-[calc(100vh-48px)] shadow-md/60 bg-white`}>
             <div className="flex flex-col gap-5 pt-8">
                 <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
-                    <HamburgerIcon width={32} height={32} />
+                    <ColapIcon width={32} height={32} />
                 </button>
                 <div>
                     <ul>

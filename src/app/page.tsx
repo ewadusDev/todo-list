@@ -21,7 +21,7 @@ export default async function Home(props: { searchParams?: Promise<{ query: stri
 
       <div className=" w-full flex flex-col items-center justify-center">
 
-        todo overall
+
         <div className="grid grid-cols-2 gap-7 w-[700px]">
           <TodoList title="" className="col-span-2 overflow-scroll" query={query} />
         </div>

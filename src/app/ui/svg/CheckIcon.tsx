@@ -5,12 +5,16 @@ const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
         width={800}
         height={800}
         fill="none"
-        stroke="#000"
-        viewBox="0 0 64 64"
+        viewBox="0 0 24 24"
         {...props}
     >
-        <circle cx={32} cy={32} r={24} />
-        <path d="M44 24 28 40l-8-8" />
+        <path
+            stroke="#000"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1}
+            d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z"
+        />
     </svg>
 )
 export default CheckIcon

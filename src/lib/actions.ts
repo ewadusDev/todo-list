@@ -270,3 +270,11 @@ export async function createUser(prevState: string, formData: FormData) {
 
 
 }
+
+export const updateTodo = async (formData: FormData) => {
+    const rawData = Object.fromEntries(formData)
+
+    console.log(rawData)
+
+
+}
