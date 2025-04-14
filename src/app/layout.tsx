@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidenav from "./ui/sidebar/sidenav";
 import SessionWrapper from "./SessionWrapper";
 
 
