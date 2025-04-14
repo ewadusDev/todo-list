@@ -22,7 +22,7 @@ const LeftSidebar = () => {
 
     if (!isShown) {
         return (
-            <aside className="pt-8 ">
+            <aside className="pt-8 absolute left-0">
                 <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
                     <ColapIcon width={32} height={32} />
                 </button>
@@ -33,7 +33,7 @@ const LeftSidebar = () => {
 
 
     return (
-        <aside className={`${isShown ? 'block' : 'hidden'} absolute left-0   w-[300px] h-[calc(100vh-48px)] shadow-md/60 bg-white`}>
+        <aside className={`${isShown ? 'block' : 'hidden'} absolute left-0  w-[300px] h-[calc(100vh-48px)] shadow-md/60 bg-white`}>
             <div className="flex flex-col gap-5 pt-8">
                 <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
                     <ColapIcon width={32} height={32} />
