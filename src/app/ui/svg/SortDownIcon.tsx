@@ -1,5 +1,5 @@
 import * as React from "react"
-const FavoriteIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const SortDownIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={800}
@@ -12,9 +12,9 @@ const FavoriteIcon = (props: React.SVGProps<SVGSVGElement>) => (
       stroke={props.stroke || "#000"}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1}
-      d="M12 7.694C10 3 3 3.5 3 9.5s9 11 9 11 9-5 9-11-7-6.5-9-1.806Z"
+      strokeWidth={2}
+      d="M4 17h6m-6-5h9m5-1v8m0 0 3-3m-3 3-3-3M4 7h12"
     />
   </svg>
 )
-export default FavoriteIcon
+export default SortDownIcon

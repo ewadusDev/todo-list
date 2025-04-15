@@ -9,7 +9,7 @@ const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#000"
+      stroke={props.stroke || "#000"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1}

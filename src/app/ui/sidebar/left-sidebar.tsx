@@ -17,45 +17,34 @@ const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "Starred", i
 const LeftSidebar = () => {
     const [isShown, setIsShown] = useState<boolean>(true)
     const pathname = usePathname()
-    console.log(pathname)
-
-
-    if (!isShown) {
-        return (
-            <aside className="pt-8 absolute left-0">
-                <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
-                    <ColapIcon width={32} height={32} />
-                </button>
-
-            </aside>
-        )
-    }
-
 
     return (
-        <aside className={`${isShown ? 'block' : 'hidden'} absolute left-0  w-[300px] h-[calc(100vh-48px)] shadow-md/60 bg-white`}>
-            <div className="flex flex-col gap-5 pt-8">
-                <button className="ml-8 hover:cursor-pointer" onClick={() => setIsShown(!isShown)}>
-                    <ColapIcon width={32} height={32} />
-                </button>
-                <div>
-                    <ul>
-                        {icons.map((icon, index) => {
-                            return (
-                                <Link href={icon.path} key={index}>
-                                    <li className={`flex h-12 justify-start items-center gap-6 pl-8 hover:cursor-pointer ${pathname === icon.path ? 'bg-gray-200' : ''} hover:bg-gray-200`}>
-                                        <icon.icon width={24} height={24} />
-                                        <span className="text-[16px]">{icon.name}</span></li>
-                                </Link>
-                            )
-                        })}
-                    </ul>
+        <aside className="flex bg-[#F5F5F5]">
 
+            {/* nav area */}
+            <div className={`bg-white text-white shadow-md/60 h-full transition-all duration-200 ease-in-out ${isShown ? 'w-20' : 'w-64'}`} >
+
+                <div className="flex items-center justify-end p-4 pr-7">
+                    <button onClick={() => setIsShown(!isShown)}>
+                        {isShown ? <ColapIcon width={24} height={24}  stroke="#000"/> : <ColapIcon width={24} height={24} />}
+                    </button>
                 </div>
 
+                <ul className="mt-4">
+                    {icons.map((icon, index) => {
+                        return (
+                            <Link href={icon.path} key={index} className={`flex h-15 justify-start pl-6 items-center gap-6 hover:cursor-pointer ${pathname === icon.path ? 'bg-[#1C78C3]' : ''} hover:bg-[#1C78C3]`}>
+                                <li className={`flex h-12 justify-start items-center gap-6  `}>
+                                    {pathname === icon.path ? (<icon.icon width={24} height={24} stroke="#FFFF" />) : (<icon.icon width={24} height={24} stroke="#000" />)}
+                                    {!isShown && <span className={`text-[16px]${pathname === icon.path ? ' text-white' : ''} text-black transition-all duration-200 ease-in-out`}>{icon.name}</span>}
+                                </li>
+                            </Link>
+                        )
+                    })}
+                </ul>
             </div>
 
-        </aside>
+        </aside >
     )
 }
 export default LeftSidebar

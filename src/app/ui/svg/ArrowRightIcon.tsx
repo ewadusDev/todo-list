@@ -1,5 +1,5 @@
 import * as React from "react"
-const CheckedIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const ArrowRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={800}
@@ -13,8 +13,8 @@ const CheckedIcon = (props: React.SVGProps<SVGSVGElement>) => (
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1}
-            d="m15 10-4 4-2-2m3 9a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"
+            d="m9 5 7 7-7 7"
         />
     </svg>
 )
-export default CheckedIcon
+export default ArrowRightIcon

@@ -1,6 +1,6 @@
 import * as React from "react"
 const ImageIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={800}
     height={800}
@@ -9,7 +9,7 @@ const ImageIcon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#000"
+      stroke={props.stroke || "#000"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1}

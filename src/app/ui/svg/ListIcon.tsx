@@ -1,5 +1,5 @@
 import * as React from "react"
-const SoringIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const ListIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={800}
@@ -9,12 +9,12 @@ const SoringIcon = (props: React.SVGProps<SVGSVGElement>) => (
         {...props}
     >
         <path
-            stroke="#1C274C"
+            stroke={props.stroke || "#000"}
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M16 18V6m0 0 4 4.125M16 6l-4 4.125M8 6v12m0 0 4-4.125M8 18l-4-4.125"
+            strokeWidth={2}
+            d="M8 6h13M8 12h13M8 18h13M3 6.5h1v-1H3v1Zm0 6h1v-1H3v1Zm0 6h1v-1H3v1Z"
         />
     </svg>
 )
-export default SoringIcon
+export default ListIcon

@@ -9,7 +9,7 @@ const LogoIcon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#fff"
+      stroke={props.stroke || "#000"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
