@@ -5,10 +5,10 @@ import CheckIcon from "../svg/CheckIcon";
 import FavoriteIcon from "../svg/FavoriteIcon";
 import Checkbox from '@mui/material/Checkbox';
 import UploadBox from "./upload-box";
-// import { updateTodo } from "@/lib/actions";
 import ColapIcon from "../svg/ColapIcon";
-import TrashIcon from "../svg/TrashIcon";
 import { useEffect } from "react";
+import Trash from "../home/new-trash";
+
 
 type TodoProps = {
   id: string
@@ -90,7 +90,7 @@ const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedD
       <div className="flex justify-between items-center px-5 pb-3">
         <ColapIcon width={32} height={32} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
         <p className="text-sm text-gray-400">Created: 12/12/2025</p>
-        <TrashIcon width={32} height={32} className="hover:cursor-pointer" />
+        <Trash id={selectedData?.id} handleSetIsActiveRightSideBar={handleSetIsActiveRightSideBar} />
 
       </div>
 
