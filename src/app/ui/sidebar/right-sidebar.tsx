@@ -3,42 +3,47 @@
 import CheckedIcon from "../svg/CheckedIcon";
 import CheckIcon from "../svg/CheckIcon";
 import FavoriteIcon from "../svg/FavoriteIcon";
-import Checkbox from '@mui/material/Checkbox';;
+import Checkbox from '@mui/material/Checkbox';
 import UploadBox from "./upload-box";
 // import { updateTodo } from "@/lib/actions";
 import ColapIcon from "../svg/ColapIcon";
 import TrashIcon from "../svg/TrashIcon";
-import { useState } from "react";
+import { useEffect } from "react";
+
+type TodoProps = {
+  id: string
+  is_done: boolean
+  task: string
+  time: string
+}
 
 
-const RightSideBar = () => {
-  const [isShown, setIsShown] = useState<boolean>(true)
+const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedData }: { isActiveRightSideBar: boolean, setIsActiveRightSideBar: (value: boolean) => void, selectedData: TodoProps | null }) => {
+  const handleSetIsActiveRightSideBar = () => setIsActiveRightSideBar(false)
 
-  const handleIsShown = () => setIsShown(!isShown)
+  useEffect(() => {
 
-
+  }, [selectedData])
 
 
   return (
-
-    // <aside className="  shadow-md/60 flex flex-col justify-between">
-
-    <aside className={`p-3  ${isShown ? 'w-[380px]' : 'hidden'} shadow-md/60 flex flex-col justify-between`} >
+    <aside className={`p-3 ${isActiveRightSideBar ? 'w-[380px]' : 'hidden'}  shadow-md/60 flex flex-col justify-between`} >
       <div >
         <div className="w-full flex gap-2 bg-white px-[11px] py-3 rounded-[3px] items-center">
           <form
           // action={formAction}
           >
-            <input type="hidden" name="id" value={"123123"} />
-            <input type="hidden" name="is_done" value={(false).toString()} />
-            <Checkbox
-              // defaultChecked={todo.is_done}
-              // onChange={(e) => e.currentTarget.form?.requestSubmit()}
-              icon={<CheckIcon width={24} height={24} />}
-              checkedIcon={<CheckedIcon fill="#1C78C3" width={24} height={24} />}
-
-            />
-
+            {selectedData && (<>
+              <input type="hidden" name="id" value={selectedData.id} />
+              <input type="hidden" name="is_done" value={String(selectedData.is_done)} />
+              <Checkbox
+                checked={selectedData.is_done}
+                onChange={(e) => e.currentTarget.form?.requestSubmit()}
+                icon={<CheckIcon width={24} height={24} />}
+                checkedIcon={<CheckedIcon fill="#1C78C3" width={24} height={24} />}
+              />
+            </>
+            )}
           </form>
 
           <form
@@ -54,7 +59,7 @@ const RightSideBar = () => {
             />
             <input name="task" className="w-full outline-none" maxLength={40}
               // defaultValue={task} 
-              defaultValue={"Shpping"}
+              defaultValue={selectedData?.task}
             />
           </form>
 
@@ -82,10 +87,10 @@ const RightSideBar = () => {
 
       </div>
 
-      <div className="flex justify-between px-5 pb-3">
-        <ColapIcon width={24} height={24} onClick={handleIsShown} />
-        <p>Created: 12/12/2025</p>
-        <TrashIcon width={24} height={24} />
+      <div className="flex justify-between items-center px-5 pb-3">
+        <ColapIcon width={32} height={32} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
+        <p className="text-sm text-gray-400">Created: 12/12/2025</p>
+        <TrashIcon width={32} height={32} className="hover:cursor-pointer" />
 
       </div>
 

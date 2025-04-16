@@ -1,32 +1,39 @@
+import { getTodos } from "@/lib/actions";
 import MainWorkPlace from "./ui/home/main-workplace";
 import TodoList from "./ui/home/todolist";
+import { getServerSession } from "next-auth/next"
 import Navbar from "./ui/navbar";
 import LeftSidebar from "./ui/sidebar/left-sidebar";
-import RightSideBar from "./ui/sidebar/right-sidebar";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 
 export default async function Home(props: { searchParams?: Promise<{ query: string }> }) {
   const searchParams = await props.searchParams
   const query = searchParams?.query || ''
+  const session = await getServerSession(authOptions)
+
+
+  if (!session || !session.user?.id) {
+    return (
+      <main>
+        <Navbar />
+        <section className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
+          <h2 className="text-2xl font-semibold text-red-500">You must be signed in to view tasks</h2>
+        </section>
+      </main >
+
+    )
+  }
+
+  const fetchTodos = await getTodos(query || '', session!.user!.id)
 
   return (
     <main>
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
-        <LeftSidebar />
-        <MainWorkPlace />
-        <RightSideBar />
+          <LeftSidebar />
+          <MainWorkPlace todos={fetchTodos} />
       </div>
-
-      {/* <RightSideBar /> */}
-
-      {/* <div className="border"> */}
-      {/* <div className="grid grid-cols-2 gap-7 w-[700px]">
-          <TodoList title="" className="col-span-2 overflow-scroll" query={query} />
-        </div> */}
-
-      {/* </div> */}
-
     </main>
   );
 }

@@ -4,6 +4,7 @@ import LogoIcon from "./svg/LogoIcon"
 import SearchIcon from "./svg/SearchIcon";
 import BentoIcon from "./svg/BentoIcon";
 import SettingIcon from "./svg/SettingIcon";
+import ProfileIcon from "./svg/ProfileIcon";
 
 
 const Navbar = () => {
@@ -30,7 +31,7 @@ const Navbar = () => {
         <nav className="bg-[#1C78C3] h-[48px] ">
             <div className="flex justify-between items-center w-full h-full px-7">
                 <div className="flex items-center gap-2">
-                    <LogoIcon className="w-9" />
+                    <LogoIcon className="w-9" stroke="#fff" />
                     <h2 className="font-semibold text-white">To-Do List</h2>
                 </div>
                 {/* Search */}
@@ -46,9 +47,7 @@ const Navbar = () => {
                 <div className="flex flex-row gap-2 items-center">
                     <SettingIcon className="w-[24px]" />
                     <BentoIcon className="w-[24px]" />
-                    <div className="w-[32px] h-[32px] rounded-full bg-gray-400 border">
-                    </div>
-
+                    <ProfileIcon width={36} height={36} fill="#fff"/>
                 </div>
 
             </div>

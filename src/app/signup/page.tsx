@@ -13,7 +13,6 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [state, formAction] = useActionState(createUser, "")
 
-  console.log(state)
 
   useEffect(() => {
     if (state) {

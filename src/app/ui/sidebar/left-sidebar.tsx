@@ -19,14 +19,14 @@ const LeftSidebar = () => {
     const pathname = usePathname()
 
     return (
-        <aside className="flex bg-[#F5F5F5]">
+        <aside className="h-full">
 
             {/* nav area */}
             <div className={`bg-white text-white shadow-md/60 h-full transition-all duration-200 ease-in-out ${isShown ? 'w-20' : 'w-64'}`} >
 
                 <div className="flex items-center justify-end p-4 pr-7">
-                    <button onClick={() => setIsShown(!isShown)}>
-                        {isShown ? <ColapIcon width={24} height={24}  stroke="#000"/> : <ColapIcon width={24} height={24} />}
+                    <button onClick={() => setIsShown(!isShown)} className="hover:cursor-pointer">
+                        {isShown ? <ColapIcon width={32} height={32} stroke="#000" /> : <ColapIcon width={32} height={32} />}
                     </button>
                 </div>
 

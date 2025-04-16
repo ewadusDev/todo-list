@@ -1,138 +1,83 @@
 "use client"
 
-import { createTodo } from "@/lib/actions"
-import { useSession } from "next-auth/react";
-import GridIcon from "../svg/GridIcon"
-import HouseIcon from "../svg/HouseIcon"
-import ListIcon from "../svg/ListIcon"
-import CheckIcon from "../svg/CheckIcon";
-import ArrowDownIcon from "../svg/ArrowDownIcon";
-import FavoriteIcon from "../svg/FavoriteIcon";
-import { useState } from "react";
-import ArrowRightIcon from "../svg/ArrowRightIcon";
-import SortDownIcon from "../svg/SortDownIcon";
-import SortUpIcon from "../svg/SortUpIcon";
+import { useEffect, useState } from "react";
+import TopMenu from "./new-top-menu";
+import TaskAddForm from "./new-task-add-form";
+import CompletedTitle from "./new-completed-title";
+import CompletedLists from "./new-completed-lists";
+import UncompletedTitle from "./new-uncompleted-title";
+import UncompletedLists from "./new-uncompleted-lists";
+import RightSideBar from "../sidebar/right-sidebar";
 
 
-const MainWorkPlace = () => {
-    const { data: session } = useSession()
+type TodoProps = {
+    id: string
+    is_done: boolean
+    task: string
+    time: string
+}
+
+const sortAsc = (items: TodoProps[]) => [...items].sort((a, b) => Number(a.time) - Number(b.time))
+const sortDesc = (items: TodoProps[]) => [...items].sort((a, b) => Number(b.time) - Number(a.time))
+
+
+const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
     const [isShownComplete, setIsShownComplete] = useState<boolean>(true)
     const [isSorted, setIsSorted] = useState<boolean>(false)
+    const [lists, setLists] = useState<TodoProps[]>(sortDesc(todos))
+    const unComlpeteTodos = lists.filter((todo) => todo.is_done !== true)
+    const completedTodos = lists.filter((todo) => todo.is_done === true)
+    const [isActiveRightSideBar, setIsActiveRightSideBar] = useState<boolean>(false)
+    const [selectedData, setSelectedData] = useState<TodoProps | null>(null)
 
     const handleShowComplete = () => setIsShownComplete(!isShownComplete)
-    const handleIsSorted = () => setIsSorted(!isSorted)
-    const createTodoList = createTodo.bind(null, session?.user.id)
+    const handleIsActiveRightSideBar = () => setIsActiveRightSideBar(true)
+
+    const handleIsSorted = () => {
+        const sorted = isSorted ? sortDesc(todos) : sortAsc(todos)
+        setLists(sorted)
+        setIsSorted(!isSorted)
+    }
+
+
+    // Update list when data or sort state changes
+    useEffect(() => {
+        const sorted = isSorted ? sortAsc(todos) : sortDesc(todos)
+        setLists(sorted)
+    }, [isSorted, todos])
+
 
     return (
-        <section className="w-full flex flex-col py-16 px-14">
-            <div className="flex justify-between w-full">
-                <div className="flex gap-6">
-                    <div className="flex flex-row text-2xl gap-1  items-center text-[#1C78C3]">
-                        <HouseIcon width={33} height={33} stroke={"#1C78C3"} />
-                        Task
+        <>
+            <section className="w-full h-full flex flex-col pt-5 px-14"
+            // onClick={() => setIsActiveRightSideBar(false)}
+            >
+                <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} />
+                {/* Adding Todo */}
+                <TaskAddForm />
+                {/* Display Todos */}
+
+                <div className="pt-2 h-full overflow-y-scroll">
+                    <UncompletedTitle unComlpeteTodos={unComlpeteTodos} />
+                    <div className="">
+                        <UncompletedLists unComlpeteTodos={unComlpeteTodos} handleIsActiveRightSideBar={handleIsActiveRightSideBar} setSelectedData={setSelectedData} />
                     </div>
-                    <div className="flex flex-row text-md gap-1 items-center text-[#1C78C3]">
-                        <GridIcon width={25} height={25} />
-                        Grid
-                    </div>
-                    <div className="flex flex-row text-md gap-1 items-center text-[#1C78C3]">
-                        <ListIcon width={25} height={25} stroke={"#1C78C3"} />
-                        List
-                    </div>
-                </div>
-
-                <div className="flex text-md gap-1 items-center text-[#1C78C3] select-none" onClick={handleIsSorted}>
-                    {isSorted ? (<SortDownIcon width={25} height={25} stroke="#1C78C3" />) : (<SortUpIcon width={24} height={24} stroke="#1C78C3" />)}
-                    Sort
-                </div>
-            </div>
-
-            {/* Adding Todo */}
-            <div className="pt-7">
-                <div className="w-full h-[52px] rounded-[3px] flex flex-row justify-between items-center overflow-hidden px-4 bg-white shadow-md border-y-1 border-gray-200 ">
-                    <form className="flex w-full gap-5 "
-                        action={createTodoList} >
-                        < CheckIcon width={24} height={24} className="grow-1" />
-                        <input type="text" name="task" className=" w-full outline-hidden text-[#1C78C3] placeholder-[#1C78C3]" placeholder="Add new task" />
-                    </form>
-                </div>
-
-
-            </div>
-
-
-            {/* Display Todos */}
-            <div className="pt-2">
-                <div className="w-full h-[52px] rounded-[3px] bg-white flex flex-row items-center ">
-                    <p className="w-full pl-15 text-start">Title</p>
-                    <p className="w-full pr-15 text-end">Importance</p>
-                </div>
-
-                <div>
-                    <ul>
-                        <li className="w-full h-[52px] rounded-[3px] flex flex-row justify-between items-center overflow-hidden px-4 bg-white shadow-md border-y-1 border-gray-200 gap-5">
-                            <div className="flex gap-5  w-full">
-                                <form className="flex flex-row items-center overflow-hidden"
-                                    action={createTodoList} >
-                                    < CheckIcon width={24} height={24} className="grow-1" />
-                                </form>
-
-                                <form action="" className="w-full">
-                                    <input type="hidden" />
-                                    <input type="text" name="task" defaultValue={"shopping"} className="w-full" />
-                                </form>
-
+                    {/* Completed Section */}
+                    <div>
+                        <CompletedTitle isShownComplete={isShownComplete} completedTodos={completedTodos} handleShowComplete={handleShowComplete} />
+                        {isShownComplete && (
+                            <div>
+                                <CompletedLists completedTodos={completedTodos} handleIsActiveRightSideBar={handleIsActiveRightSideBar} setSelectedData={setSelectedData} />
                             </div>
-
-                            <form action="" className="pr-18">
-                                <FavoriteIcon width={24} height={24} />
-                            </form>
-                        </li>
-                    </ul>
-
-                </div>
-
-                {/* Completed Section */}
-                <div className="">
-                    <div className="h-[60px] flex gap-2 items-center" onClick={handleShowComplete}>
-                        {isShownComplete ? (<ArrowDownIcon width={24} height={24} />) : (<ArrowRightIcon width={24} height={24} />)}
-
-                        <p className="select-none">Complete 2</p>
+                        )}
                     </div>
-
-                    {isShownComplete && (
-                        <div>
-                            <ul>
-                                <li className="w-full h-[52px] rounded-[3px] flex flex-row items-center justify-between overflow-hidden px-2 pl-4 bg-white shadow-md border-y-1 border-gray-200 gap-5">
-
-                                    <div className="flex gap-5 w-full">
-                                        <form className="flex flex-row items-center overflow-hidden"
-                                            action={createTodoList} >
-                                            < CheckIcon width={24} height={24} className="grow-1" />
-                                        </form>
-
-                                        <p className="line-through border w-full">Shopping</p>
-                                    </div>
-
-                                    <form action="" className="pr-20">
-                                        <FavoriteIcon width={24} height={24} />
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                    )}
-
-
                 </div>
+            </section>
 
-            </div>
+            {/* Right side bar */}
+            <RightSideBar isActiveRightSideBar={isActiveRightSideBar} setIsActiveRightSideBar={setIsActiveRightSideBar} selectedData={selectedData} />
+        </>
 
-
-
-
-        </section>
     )
 }
 export default MainWorkPlace
