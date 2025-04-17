@@ -9,10 +9,10 @@ type TodoProps = {
 }
 
 
-const CompletedLists = ({ completedTodos, setSelectedData, handleIsActiveRightSideBar }: { completedTodos: TodoProps[], setSelectedData: (value: TodoProps | null) => void, handleIsActiveRightSideBar: () => void }) => {
+const CompletedLists = ({ completedTodos, setSelectedData, setIsActiveRightSideBar }: { completedTodos: TodoProps[], setSelectedData: (value: TodoProps | null) => void, setIsActiveRightSideBar: (data: boolean) => void }) => {
     const handleClick = (todo: TodoProps) => {
         setSelectedData(todo)
-        handleIsActiveRightSideBar()
+        setIsActiveRightSideBar(true)
     }
 
     return (
@@ -23,7 +23,7 @@ const CompletedLists = ({ completedTodos, setSelectedData, handleIsActiveRightSi
                         onClick={() => handleClick(todo)}
                     >
                         <div className="flex gap-5 w-full items-center">
-                            <TaskCheckbox todo={todo} />
+                            <TaskCheckbox todo={todo} setIsActiveRightSideBar={setIsActiveRightSideBar} />
                             <p className="line-through w-full">{todo.task}</p>
                         </div>
                         <TaskFavorite todo={todo} />

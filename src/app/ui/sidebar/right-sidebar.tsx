@@ -82,13 +82,12 @@ const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedD
 
         </div>
 
-
         <UploadBox id={"13"} />
 
       </div>
 
       <div className="flex justify-between items-center px-5 pb-3">
-        <ColapIcon width={32} height={32} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
+        <ColapIcon width={30} height={30} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
         <p className="text-sm text-gray-400">Created: 12/12/2025</p>
         <Trash id={selectedData?.id} handleSetIsActiveRightSideBar={handleSetIsActiveRightSideBar} />
 

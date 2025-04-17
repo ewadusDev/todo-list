@@ -11,11 +11,11 @@ type TodoProps = {
 }
 
 
-const UncompletedLists = ({ unComlpeteTodos, handleIsActiveRightSideBar, setSelectedData }: { unComlpeteTodos: TodoProps[], handleIsActiveRightSideBar: () => void, setSelectedData: (value: TodoProps | null) => void }) => {
+const UncompletedLists = ({ unComlpeteTodos, setSelectedData, setIsActiveRightSideBar }: { unComlpeteTodos: TodoProps[], setSelectedData: (value: TodoProps | null) => void, setIsActiveRightSideBar: (data: boolean) => void }) => {
 
     const handleClick = (todo: TodoProps) => {
         setSelectedData(todo)
-        handleIsActiveRightSideBar()
+        setIsActiveRightSideBar(true)
     }
 
     return (
@@ -26,7 +26,7 @@ const UncompletedLists = ({ unComlpeteTodos, handleIsActiveRightSideBar, setSele
                         onClick={() => handleClick(todo)}
                     >
                         <div className="flex gap-5 w-full">
-                            <TaskCheckbox todo={todo} />
+                            <TaskCheckbox todo={todo} setIsActiveRightSideBar={setIsActiveRightSideBar} />
                             <TaskEdit id={todo.id} task={todo.task} />
                         </div>
                         <TaskFavorite todo={todo} />

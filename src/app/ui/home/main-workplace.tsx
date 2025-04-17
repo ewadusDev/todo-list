@@ -31,7 +31,6 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
     const [selectedData, setSelectedData] = useState<TodoProps | null>(null)
 
     const handleShowComplete = () => setIsShownComplete(!isShownComplete)
-    const handleIsActiveRightSideBar = () => setIsActiveRightSideBar(true)
 
     const handleIsSorted = () => {
         const sorted = isSorted ? sortDesc(todos) : sortAsc(todos)
@@ -60,14 +59,14 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
                 <div className="pt-2 h-full overflow-y-scroll">
                     <UncompletedTitle unComlpeteTodos={unComlpeteTodos} />
                     <div className="">
-                        <UncompletedLists unComlpeteTodos={unComlpeteTodos} handleIsActiveRightSideBar={handleIsActiveRightSideBar} setSelectedData={setSelectedData} />
+                        <UncompletedLists unComlpeteTodos={unComlpeteTodos}  setSelectedData={setSelectedData} setIsActiveRightSideBar={setIsActiveRightSideBar} />
                     </div>
                     {/* Completed Section */}
                     <div>
                         <CompletedTitle isShownComplete={isShownComplete} completedTodos={completedTodos} handleShowComplete={handleShowComplete} />
                         {isShownComplete && (
                             <div>
-                                <CompletedLists completedTodos={completedTodos} handleIsActiveRightSideBar={handleIsActiveRightSideBar} setSelectedData={setSelectedData} />
+                                <CompletedLists completedTodos={completedTodos} setIsActiveRightSideBar={setIsActiveRightSideBar} setSelectedData={setSelectedData} />
                             </div>
                         )}
                     </div>

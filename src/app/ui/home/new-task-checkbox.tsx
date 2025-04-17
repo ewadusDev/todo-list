@@ -2,30 +2,20 @@
 
 import { updateCheckbox, State } from "@/lib/actions"
 import { Checkbox } from "@mui/material"
-import { useActionState, useEffect, useState } from "react"
+import { useActionState } from "react"
 import CheckIcon from "../svg/CheckIcon"
 import CheckedIcon from "../svg/CheckedIcon"
 
 
-const TaskCheckbox = ({ todo }: { todo: { id: string, task: string, is_done: boolean } }) => {
+const TaskCheckbox = ({ todo, setIsActiveRightSideBar }: { todo: { id: string, task: string, is_done: boolean }, setIsActiveRightSideBar: (data: boolean) => void }) => {
     const initialState: State = { errors: {}, message: '' }
-    const [state, formAction] = useActionState(updateCheckbox, initialState)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [stateMessage, setStateMessage] = useState<string>("")
+    const [state, formAction] = useActionState(updateCheckbox, initialState)
 
-
-    useEffect(() => {
-        setStateMessage(state.message || '')
-
-        if (state.message) {
-            const timeout = setTimeout(() => {
-                setStateMessage('')
-            }, 1000)
-
-            return () => clearTimeout(timeout)
-        }
-    }, [state.message])
-
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.currentTarget.form?.requestSubmit()
+        setIsActiveRightSideBar(false)
+    }
 
     return (
         <form action={formAction}>
@@ -35,7 +25,7 @@ const TaskCheckbox = ({ todo }: { todo: { id: string, task: string, is_done: boo
                 icon={< CheckIcon width={24} height={24} />}
                 checkedIcon={<CheckedIcon fill="#1C78C3" width={24} height={24} />}
                 defaultChecked={todo.is_done}
-                onChange={(e) => e.currentTarget.form?.requestSubmit()}
+                onChange={handleOnChange}
             />
         </form>
     )
