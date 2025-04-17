@@ -14,11 +14,13 @@ export const sampleTodos = [
         task: 'Buy groceries',
         time: Date.now(),
         is_done: false,
+        is_favorite: false
     },
     {
         id: uuid.v4(),
         task: 'Walk the dog',
         time: Date.now(),
         is_done: true,
+        is_favorite: false
     },
 ];

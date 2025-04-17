@@ -1,10 +1,4 @@
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time: string
-}
+import { TodoProps } from "@/types/base"
 
 const UncompletedTitle = ({ unComlpeteTodos }: { unComlpeteTodos: TodoProps[] }) => {
     return (

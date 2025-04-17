@@ -1,12 +1,6 @@
+import Favorite from "./new-favorite"
 import TaskCheckbox from "./new-task-checkbox"
-import TaskFavorite from "./new-task-favorite"
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time: string
-}
+import { TodoProps } from "@/types/base"
 
 
 const CompletedLists = ({ completedTodos, setSelectedData, setIsActiveRightSideBar }: { completedTodos: TodoProps[], setSelectedData: (value: TodoProps | null) => void, setIsActiveRightSideBar: (data: boolean) => void }) => {
@@ -23,10 +17,10 @@ const CompletedLists = ({ completedTodos, setSelectedData, setIsActiveRightSideB
                         onClick={() => handleClick(todo)}
                     >
                         <div className="flex gap-5 w-full items-center">
-                            <TaskCheckbox todo={todo} setIsActiveRightSideBar={setIsActiveRightSideBar} />
+                            <TaskCheckbox todo={todo} />
                             <p className="line-through w-full">{todo.task}</p>
                         </div>
-                        <TaskFavorite todo={todo} />
+                        <Favorite todo={todo} />
                     </li>
                 )
             })}

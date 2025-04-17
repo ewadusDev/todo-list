@@ -1,14 +1,7 @@
+import Favorite from "./new-favorite"
 import TaskCheckbox from "./new-task-checkbox"
 import TaskEdit from "./new-task-edit"
-import TaskFavorite from "./new-task-favorite"
-
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time: string
-}
+import { TodoProps } from "@/types/base"
 
 
 const UncompletedLists = ({ unComlpeteTodos, setSelectedData, setIsActiveRightSideBar }: { unComlpeteTodos: TodoProps[], setSelectedData: (value: TodoProps | null) => void, setIsActiveRightSideBar: (data: boolean) => void }) => {
@@ -29,7 +22,7 @@ const UncompletedLists = ({ unComlpeteTodos, setSelectedData, setIsActiveRightSi
                             <TaskCheckbox todo={todo} />
                             <TaskEdit id={todo.id} task={todo.task} />
                         </div>
-                        <TaskFavorite todo={todo} />
+                        <Favorite todo={todo} />
                     </li>
                 )
             })}

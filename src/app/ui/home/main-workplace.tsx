@@ -8,14 +8,7 @@ import CompletedLists from "./new-completed-lists";
 import UncompletedTitle from "./new-uncompleted-title";
 import UncompletedLists from "./new-uncompleted-lists";
 import RightSideBar from "../sidebar/right-sidebar";
-
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time: string
-}
+import { TodoProps } from "@/types/base"
 
 const sortAsc = (items: TodoProps[]) => [...items].sort((a, b) => Number(a.time) - Number(b.time))
 const sortDesc = (items: TodoProps[]) => [...items].sort((a, b) => Number(b.time) - Number(a.time))

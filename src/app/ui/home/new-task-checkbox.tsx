@@ -5,14 +5,7 @@ import { Checkbox } from "@mui/material"
 import { useActionState } from "react"
 import CheckIcon from "../svg/CheckIcon"
 import CheckedIcon from "../svg/CheckedIcon"
-
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time?: string
-}
+import { TodoProps } from "@/types/base"
 
 const TaskCheckbox = ({ todo }: { todo: TodoProps | undefined }) => {
     const initialState: State = { errors: {}, message: '' }

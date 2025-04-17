@@ -96,6 +96,41 @@ export async function updateCheckbox(prevState: State, formData: FormData) {
     }
 }
 
+export async function updateFavorite(prevState: State, formData: FormData) {
+    const validatedFields = {
+        id: formData.get("id"),
+        is_favorite: formData.get("is_favorite")
+    }
+
+    const { id, is_favorite } = validatedFields
+
+    console.log(validatedFields)
+
+    try {
+        await pool.query(
+            'UPDATE todos SET is_favorite = $1 WHERE id = $2',
+            [is_favorite, id]
+        )
+        revalidatePath('/');
+        return {
+            message: "Todo updated successfully!"
+        }
+
+    } catch (error) {
+        revalidatePath('/');
+        console.error('❌ DB Error:', error);
+        return {
+            errors: {
+                id: ["Todo update failed"],
+                task: ["Todo update failed"],
+                is_done: ["Todo update failed"]
+            },
+            message: "Todo update failed"
+        }
+    }
+
+}
+
 export const seedDatabase = async () => {
 
     try {
@@ -115,6 +150,7 @@ export const seedDatabase = async () => {
               task TEXT NOT NULL,
               time BIGINT NOT NULL,
               is_done BOOLEAN DEFAULT FALSE,
+              is_favorite BOOLEAN DEFAULT FALSE,
               uid UUID REFERENCES users(id)
             );
           `);
@@ -132,8 +168,8 @@ export const seedDatabase = async () => {
 
         for (const todo of sampleTodos) {
             await pool.query(
-                'INSERT INTO todos (id, task, time, is_done, uid) VALUES ($1, $2, $3, $4, $5)',
-                [todo.id, todo.task, todo.time, todo.is_done, userId]
+                'INSERT INTO todos (id, task, time, is_done , is_favorite, uid) VALUES ($1, $2, $3, $4, $5, $6)',
+                [todo.id, todo.task, todo.time, todo.is_done, todo.is_favorite, userId]
             );
         }
         console.log('✅ Seeded todos successfully!');

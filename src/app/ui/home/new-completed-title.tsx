@@ -1,12 +1,6 @@
 import ArrowDownIcon from "../svg/ArrowDownIcon"
 import ArrowRightIcon from "../svg/ArrowRightIcon"
-
-type TodoProps = {
-    id: string
-    is_done: boolean
-    task: string
-    time: string
-}
+import { TodoProps } from "@/types/base"
 
 const CompletedTitle = ({ isShownComplete, completedTodos, handleShowComplete }: { isShownComplete: boolean, completedTodos: TodoProps[], handleShowComplete: () => void }) => {
     return (
