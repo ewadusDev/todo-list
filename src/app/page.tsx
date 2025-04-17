@@ -27,12 +27,14 @@ export default async function Home(props: { searchParams?: Promise<{ query: stri
 
   const fetchTodos = await getTodos(query || '', session!.user!.id)
 
+  // console.log("fetchTodos", fetchTodos)
+
   return (
     <main>
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
-          <LeftSidebar />
-          <MainWorkPlace todos={fetchTodos} />
+        <LeftSidebar />
+        <MainWorkPlace todos={fetchTodos} />
       </div>
     </main>
   );

@@ -26,7 +26,7 @@ const UncompletedLists = ({ unComlpeteTodos, setSelectedData, setIsActiveRightSi
                         onClick={() => handleClick(todo)}
                     >
                         <div className="flex gap-5 w-full">
-                            <TaskCheckbox todo={todo} setIsActiveRightSideBar={setIsActiveRightSideBar} />
+                            <TaskCheckbox todo={todo} />
                             <TaskEdit id={todo.id} task={todo.task} />
                         </div>
                         <TaskFavorite todo={todo} />

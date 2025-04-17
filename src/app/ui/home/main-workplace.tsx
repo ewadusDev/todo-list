@@ -49,7 +49,6 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
     return (
         <>
             <section className="w-full h-full flex flex-col pt-5 px-14"
-            // onClick={() => setIsActiveRightSideBar(false)}
             >
                 <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} />
                 {/* Adding Todo */}
@@ -59,7 +58,7 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
                 <div className="pt-2 h-full overflow-y-scroll">
                     <UncompletedTitle unComlpeteTodos={unComlpeteTodos} />
                     <div className="">
-                        <UncompletedLists unComlpeteTodos={unComlpeteTodos}  setSelectedData={setSelectedData} setIsActiveRightSideBar={setIsActiveRightSideBar} />
+                        <UncompletedLists unComlpeteTodos={unComlpeteTodos} setSelectedData={setSelectedData} setIsActiveRightSideBar={setIsActiveRightSideBar} />
                     </div>
                     {/* Completed Section */}
                     <div>
@@ -74,7 +73,7 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
             </section>
 
             {/* Right side bar */}
-            <RightSideBar isActiveRightSideBar={isActiveRightSideBar} setIsActiveRightSideBar={setIsActiveRightSideBar} selectedData={selectedData} />
+            <RightSideBar isActiveRightSideBar={isActiveRightSideBar} setIsActiveRightSideBar={setIsActiveRightSideBar} selectedData={selectedData} todos={todos} />
         </>
 
     )

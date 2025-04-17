@@ -7,16 +7,24 @@ import CheckIcon from "../svg/CheckIcon"
 import CheckedIcon from "../svg/CheckedIcon"
 
 
-const TaskCheckbox = ({ todo, setIsActiveRightSideBar }: { todo: { id: string, task: string, is_done: boolean }, setIsActiveRightSideBar: (data: boolean) => void }) => {
+type TodoProps = {
+    id: string
+    is_done: boolean
+    task: string
+    time?: string
+}
+
+const TaskCheckbox = ({ todo }: { todo: TodoProps | undefined }) => {
     const initialState: State = { errors: {}, message: '' }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [state, formAction] = useActionState(updateCheckbox, initialState)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.currentTarget.form?.requestSubmit()
-        setIsActiveRightSideBar(false)
     }
 
+
+    if (todo === undefined) return (<>Not found todo data</>)
     return (
         <form action={formAction}>
             <input type="hidden" name="id" value={todo.id} />
@@ -24,7 +32,7 @@ const TaskCheckbox = ({ todo, setIsActiveRightSideBar }: { todo: { id: string, t
             < Checkbox
                 icon={< CheckIcon width={24} height={24} />}
                 checkedIcon={<CheckedIcon fill="#1C78C3" width={24} height={24} />}
-                defaultChecked={todo.is_done}
+                checked={todo.is_done}
                 onChange={handleOnChange}
             />
         </form>

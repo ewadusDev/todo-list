@@ -1,13 +1,12 @@
 "use client"
 
-import CheckedIcon from "../svg/CheckedIcon";
-import CheckIcon from "../svg/CheckIcon";
 import FavoriteIcon from "../svg/FavoriteIcon";
 import Checkbox from '@mui/material/Checkbox';
 import UploadBox from "./upload-box";
 import ColapIcon from "../svg/ColapIcon";
-import { useEffect } from "react";
 import Trash from "../home/new-trash";
+import TaskCheckbox from "../home/new-task-checkbox";
+import TaskEdit from "../home/new-task-edit";
 
 
 type TodoProps = {
@@ -18,50 +17,22 @@ type TodoProps = {
 }
 
 
-const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedData }: { isActiveRightSideBar: boolean, setIsActiveRightSideBar: (value: boolean) => void, selectedData: TodoProps | null }) => {
+const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedData, todos }: { isActiveRightSideBar: boolean, setIsActiveRightSideBar: (value: boolean) => void, selectedData: TodoProps | null, todos: TodoProps[] }) => {
   const handleSetIsActiveRightSideBar = () => setIsActiveRightSideBar(false)
 
-  useEffect(() => {
-
-  }, [selectedData])
+  const targetedTodo = todos.find((todo) => todo.id === selectedData?.id)
 
 
   return (
     <aside className={`p-3 ${isActiveRightSideBar ? 'w-[380px]' : 'hidden'}  shadow-md/60 flex flex-col justify-between`} >
       <div >
         <div className="w-full flex gap-2 bg-white px-[11px] py-3 rounded-[3px] items-center">
-          <form
-          // action={formAction}
-          >
-            {selectedData && (<>
-              <input type="hidden" name="id" value={selectedData.id} />
-              <input type="hidden" name="is_done" value={String(selectedData.is_done)} />
-              <Checkbox
-                checked={selectedData.is_done}
-                onChange={(e) => e.currentTarget.form?.requestSubmit()}
-                icon={<CheckIcon width={24} height={24} />}
-                checkedIcon={<CheckedIcon fill="#1C78C3" width={24} height={24} />}
-              />
-            </>
-            )}
-          </form>
+          {/* Checkbox */}
+          <TaskCheckbox todo={targetedTodo} />
+          {/* Input */}
 
-          <form
-            // action={formAction}
-            className="w-full"
-          >
-            <p className="hidden">
-              {/* {state.message} */}
 
-            </p>
-            <input type="hidden" name="id"
-            // value={id} 
-            />
-            <input name="task" className="w-full outline-none" maxLength={40}
-              // defaultValue={task} 
-              defaultValue={selectedData?.task}
-            />
-          </form>
+          <TaskEdit id={targetedTodo?.id} task={targetedTodo?.task}/>
 
         </div>
 
