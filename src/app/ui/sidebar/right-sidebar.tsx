@@ -7,12 +7,15 @@ import TaskCheckbox from "../home/new-task-checkbox";
 import TaskEdit from "../home/new-task-edit";
 import Favorite from "../home/new-favorite";
 import { TodoProps } from "@/types/base"
+import { formatDate } from "@/lib/utils";
+
+
 
 
 const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedData, todos }: { isActiveRightSideBar: boolean, setIsActiveRightSideBar: (value: boolean) => void, selectedData: TodoProps | null, todos: TodoProps[] }) => {
   const handleSetIsActiveRightSideBar = () => setIsActiveRightSideBar(false)
-
   const targetedTodo = todos.find((todo) => todo.id === selectedData?.id)
+  const date = formatDate(Number(targetedTodo?.time) || 0)
 
   return (
     <aside className={`p-3 ${isActiveRightSideBar ? 'w-[380px]' : 'hidden'}  shadow-md/60 flex flex-col justify-between`} >
@@ -33,8 +36,8 @@ const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedD
       </div>
 
       <div className="flex justify-between items-center px-5 pb-3">
-        <ColapIcon width={30} height={30} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
-        <p className="text-sm text-gray-400">Created: 12/12/2025</p>
+        <ColapIcon width={28} height={28} onClick={handleSetIsActiveRightSideBar} className="hover:cursor-pointer" />
+        <p className="text-sm text-gray-400">Created: {date}</p>
         <Trash id={selectedData?.id} handleSetIsActiveRightSideBar={handleSetIsActiveRightSideBar} />
 
       </div>

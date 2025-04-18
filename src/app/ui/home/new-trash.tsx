@@ -14,7 +14,7 @@ const Trash = ({ id, handleSetIsActiveRightSideBar }: { id?: string, handleSetIs
             <button
                 type="submit"
                 className="hover:cursor-pointer">
-                <TrashIcon width={30} height={30}
+                <TrashIcon width={28} height={28}
                     onClick={() => handleSetIsActiveRightSideBar()}
                 />
             </button>
