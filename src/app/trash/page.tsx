@@ -1,4 +1,3 @@
-
 import Navbar from "../ui/navbar"
 import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
@@ -26,6 +25,8 @@ const TrashPage = async () => {
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
         <LeftSidebar />
+
+        สัส รอทำกับเมิงละกัน
       </div>
     </main>
   )

@@ -32,7 +32,6 @@ const FavoritePage = async (props: { searchParams?: Promise<{ query: string }> }
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
         <LeftSidebar />
-        {/* <FavoriteWorkPlace/> */}
         <MainWorkPlace todos={fetchTodos} title="Favorites" icon={"favoriteIcon"} />
       </div>
     </main>

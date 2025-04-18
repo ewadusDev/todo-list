@@ -11,7 +11,7 @@ import ColapIcon from "../svg/ColapIcon"
 
 
 
-const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "favorited", icon: FavoriteIcon, path: "/favorite" }, { name: "Trash", icon: TrashIcon, path: "trash" }, { name: "Done", icon: CheckedIcon, path: "done" }]
+const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "favorited", icon: FavoriteIcon, path: "/favorite" }, { name: "Trash", icon: TrashIcon, path: "/trash" }, { name: "Done", icon: CheckedIcon, path: "/done" }]
 
 
 const LeftSidebar = () => {
