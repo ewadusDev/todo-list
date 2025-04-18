@@ -151,6 +151,7 @@ export const seedDatabase = async () => {
               time BIGINT NOT NULL,
               is_done BOOLEAN DEFAULT FALSE,
               is_favorite BOOLEAN DEFAULT FALSE,
+              image TEXT,
               uid UUID REFERENCES users(id)
             );
           `);
@@ -307,10 +308,38 @@ export async function createUser(prevState: string, formData: FormData) {
 
 }
 
-export const updateTodo = async (formData: FormData) => {
-    const rawData = Object.fromEntries(formData)
+export const uploadImage = async (prev: State, formData: FormData) => {
+    const rawData = {
+        id: formData.get("id"),
+        image: formData.get("image")
+    }
 
-    console.log(rawData)
+    if (!rawData.id || !rawData.image) return {
+        errors: {},
+        message: "Please check your fields"
+    }
 
+    const { id, image } = rawData
 
+    try {
+        pool.query(
+            'UPDATE todos SET image = $1 WHERE id = $2',
+            [image, id]
+        )
+        revalidatePath('/');
+        return {
+            errors: {},
+            message: "Todo updated successfully!"
+        }
+
+    } catch (error) {
+        revalidatePath('/');
+        console.error(error)
+        return {
+            errors: {
+                id: [id?.toString() || ""],
+            },
+            message: "Todo upload image failed"
+        }
+    }
 }

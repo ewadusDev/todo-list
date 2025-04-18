@@ -5,4 +5,5 @@ export type TodoProps = {
     is_favorite: boolean
     task: string
     time: string
+    image:string
 }

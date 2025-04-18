@@ -13,7 +13,6 @@ const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedD
   const handleSetIsActiveRightSideBar = () => setIsActiveRightSideBar(false)
 
   const targetedTodo = todos.find((todo) => todo.id === selectedData?.id)
-  console.log(targetedTodo)
 
   return (
     <aside className={`p-3 ${isActiveRightSideBar ? 'w-[380px]' : 'hidden'}  shadow-md/60 flex flex-col justify-between`} >
@@ -28,10 +27,8 @@ const RightSideBar = ({ isActiveRightSideBar, setIsActiveRightSideBar, selectedD
         <div className="w-full bg-white px-[11px] py-3 rounded-[3px] mt-7 flex items-center gap-2">
           <Favorite todo={targetedTodo} />
           <p>Add to important</p>
-
         </div>
-
-        <UploadBox id={"13"} />
+        <UploadBox id={targetedTodo?.id} image={targetedTodo?.image} />
 
       </div>
 
