@@ -8,10 +8,12 @@ import ProfileIcon from "./svg/ProfileIcon";
 import Link from "next/link";
 import AppDrawerModal from "./modal/app-drawer-modal";
 import { useState } from "react";
+import ProfileModal from "./modal/profile-modal";
 
 
 const Navbar = () => {
     const [isShownAppDrawerModal, setIsShownAppDrawerModal] = useState(false)
+    const [isShownProfileModal, setIsShownProfileModal] = useState(false)
 
     const searchParams = useSearchParams()
     const pathname = usePathname()
@@ -30,6 +32,17 @@ const Navbar = () => {
         }, 300);
 
     }
+
+    const handleProfileModle = () => {
+        setIsShownProfileModal(true)
+        setIsShownAppDrawerModal(false)
+
+    }
+    const handleAppDrawerModal = () => {
+        setIsShownProfileModal(false)
+        setIsShownAppDrawerModal(true)
+    }
+
 
     return (
         <nav className="bg-[#1C78C3] h-[48px] relative">
@@ -52,14 +65,13 @@ const Navbar = () => {
                 {/* profile */}
                 <div className="flex flex-row gap-2 items-center">
                     <SettingIcon className="w-[24px] hover:cursor-pointer" />
-                    <BentoIcon className="w-[24px] hover:cursor-pointer" onClick={() => setIsShownAppDrawerModal(!isShownAppDrawerModal)} />
-                    <ProfileIcon width={36} height={36} fill="#fff" className="hover:cursor-pointer" />
+                    <BentoIcon className="w-[24px] hover:cursor-pointer" onClick={handleAppDrawerModal} />
+                    <ProfileIcon width={36} height={36} fill="#fff" className="hover:cursor-pointer" onClick={handleProfileModle} />
                 </div>
 
                 {/* Display Modal */}
-
-                {isShownAppDrawerModal && <AppDrawerModal className={"absolute right-12 top-9 z-10"} setIsShownAppDrawerModal={setIsShownAppDrawerModal} />}
-
+                {isShownAppDrawerModal && <AppDrawerModal className={"absolute right-12 top-9 z-10"} setIsShownAppDrawerModal={setIsShownAppDrawerModal}/>}
+                {isShownProfileModal && <ProfileModal className={"absolute right-12 top-9 z-10"} setIsShownProfileModal={setIsShownProfileModal}/>}
 
 
             </div>

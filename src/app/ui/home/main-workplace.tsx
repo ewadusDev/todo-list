@@ -41,8 +41,7 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
 
     return (
         <>
-            <section className="w-full h-full flex flex-col pt-5 px-14"
-            >
+            <section className="w-full h-full flex flex-col pt-5 px-14" >
                 <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} />
                 {/* Adding Todo */}
                 <TaskAddForm />

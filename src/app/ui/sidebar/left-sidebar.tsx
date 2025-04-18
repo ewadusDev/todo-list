@@ -11,12 +11,14 @@ import ColapIcon from "../svg/ColapIcon"
 
 
 
-const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "Starred", icon: FavoriteIcon, path: "favorite" }, { name: "Trash", icon: TrashIcon, path: "trash" }, { name: "Done", icon: CheckedIcon, path: "done" }]
+const icons = [{ name: "Tasks", icon: SunIcon, path: "/" }, { name: "favorited", icon: FavoriteIcon, path: "/favorite" }, { name: "Trash", icon: TrashIcon, path: "trash" }, { name: "Done", icon: CheckedIcon, path: "done" }]
 
 
 const LeftSidebar = () => {
     const [isShown, setIsShown] = useState<boolean>(true)
     const pathname = usePathname()
+
+    console.log(pathname)
 
     return (
         <aside className="h-full">

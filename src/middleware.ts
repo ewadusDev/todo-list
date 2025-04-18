@@ -13,5 +13,5 @@ export function middleware(req: NextRequest) {
 
 // Apply middleware only to specific routes
 export const config = {
-    matcher: ['/', '/todo', '/done', '/seed'], // Protects /dashboard and any sub-routes // ใส่ page ที่ต้องการดัก
+    matcher: ['/', '/favorite', '/done', '/seed','/trash'], // Protects /dashboard and any sub-routes // ใส่ page ที่ต้องการดัก
 };

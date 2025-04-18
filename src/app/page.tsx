@@ -1,9 +1,9 @@
-import { getTodos } from "@/lib/actions";
 import MainWorkPlace from "./ui/home/main-workplace";
-import { getServerSession } from "next-auth/next"
 import Navbar from "./ui/navbar";
 import LeftSidebar from "./ui/sidebar/left-sidebar";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next"
+import { getTodos } from "@/lib/actions";
 
 
 export default async function Home(props: { searchParams?: Promise<{ query: string }> }) {

@@ -3,20 +3,20 @@ import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-type Session = {
-    user?: {
-        name?: string | null;
-        email?: string | null;
-        image?: string | null;
-        id?: string;
-    };
-    expires: string;
-}
-type User = {
-    id: string;
-    name: string;
-    email: string;
-}
+// type Session = {
+//     user?: {
+//         name?: string | null;
+//         email?: string | null;
+//         image?: string | null;
+//         id?: string;
+//     };
+//     expires: string;
+// }
+// type User = {
+//     id: string;
+//     name: string;
+//     email: string;
+// }
 
 
 
@@ -51,23 +51,28 @@ export const authOptions = {
 
                 if (!passwordMatch) throw new Error("Invalid password")
 
+                console.log("authorize", user)
                 return user
             }
         })
     ],
     callbacks: {
-        jwt({ token, user }: { token: { id: string, name: string, email: string }, user: User }) {
+        jwt({ token, user }: { token: { id: string, email: string, firstname: string, lastname: string }, user: { id: string, email: string, firstname: string, lastname: string } }) {
             if (user) {
                 token.id = user.id
-                token.name = user.name
-
+                token.email = user.email
+                token.firstname = user.firstname
+                token.lastname = user.lastname
             }
             return token
         },
-        async session({ session, token }: { session: Session, token: User }) {
+        async session({ session, token }: { session: { user: { id: string, email: string, firstname: string, lastname: string }, expires: string; }, token: { id: string, email: string, firstname: string, lastname: string } }) {
             if (session.user && token.id) {
                 session.user.id = token.id
                 session.user.email = token.email
+                session.user.firstname = token.firstname
+                session.user.lastname = token.lastname
+
             }
             return session;
         },

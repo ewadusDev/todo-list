@@ -6,23 +6,28 @@ declare module "next-auth" {
     interface Session {
         user: {
             id: string;
-            name: string;
             email: string;
+            firstname: string;
+            lastname: string;
+            image: string;
         };
+        expires: string;
     }
 
     interface User {
         id: string;
-        name: string;
         email: string;
         password: string; // include only if returned from DB (you may omit for security)
+        firstname: string;
+        lastname: string;
     }
 }
 
 declare module "next-auth/jwt" {
     interface JWT {
         id: string;
-        name: string;
         email: string;
+        firstname: string;
+        lastname: string;
     }
 }

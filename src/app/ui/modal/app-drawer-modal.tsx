@@ -11,6 +11,11 @@ const AppDrawerModal = ({ className, setIsShownAppDrawerModal }: { className: st
     const [search, setSearch] = useState<string>("")
     const selectedIcon = apps.filter(app => app.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
 
+    const handleModal = () => {
+        setIsShownAppDrawerModal(false)
+    }
+
+
     return (
         <div className={`w-[300px] h-[240px] flex flex-col shadow-2xl rounded-[30px] overflow-hidden px-4 py-3 bg-white ${className}`}>
             <div className="flex flex-row w-full items-center px-2 ">
@@ -18,7 +23,7 @@ const AppDrawerModal = ({ className, setIsShownAppDrawerModal }: { className: st
                     <SearchIcon className="w-5 h-fit" width={24} height={24} />
                     <input type="text" placeholder="Search" className="px-2  grow-50 outline-hidden" onChange={e => setSearch(e.target.value)} />
                 </div>
-                <CloseIcon width={24} height={24} onClick={() => setIsShownAppDrawerModal(false)} className="hover:cursor-pointer" />
+                <CloseIcon width={24} height={24} onClick={handleModal} className="hover:cursor-pointer" />
             </div>
             <div className={`grid grid-cols-3 ${selectedIcon.length < 3 ? "place-items-start" : "place-items-center"}  h-full w-full gap-2 py-2 mx-auto mt-4`}>
                 {selectedIcon.map(app => {

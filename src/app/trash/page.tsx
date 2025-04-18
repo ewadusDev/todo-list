@@ -5,7 +5,9 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 
 
-const DonePage = async () => {
+
+
+const TrashPage = async () => {
   const session = await getServerSession(authOptions)
 
   if (!session || !session.user?.id) {
@@ -28,4 +30,4 @@ const DonePage = async () => {
     </main>
   )
 }
-export default DonePage
+export default TrashPage
