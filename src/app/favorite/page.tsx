@@ -3,11 +3,13 @@ import Navbar from "../ui/navbar"
 import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
+import MainWorkPlace from "../ui/home/main-workplace"
+import { getForitedTodos } from "@/lib/actions"
 
 
-
-
-const FavoritePage = async () => {
+const FavoritePage = async (props: { searchParams?: Promise<{ query: string }> }) => {
+  const searchParams = await props.searchParams
+  const query = searchParams?.query || ''
   const session = await getServerSession(authOptions)
 
   if (!session || !session.user?.id) {
@@ -21,11 +23,17 @@ const FavoritePage = async () => {
 
     )
   }
+
+  const fetchTodos = await getForitedTodos(query || '', session!.user!.id)
+
+
   return (
     <main>
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
         <LeftSidebar />
+        {/* <FavoriteWorkPlace/> */}
+        <MainWorkPlace todos={fetchTodos} title="Favorites" icon={"favoriteIcon"} />
       </div>
     </main>
   )

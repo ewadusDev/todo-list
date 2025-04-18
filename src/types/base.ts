@@ -5,5 +5,9 @@ export type TodoProps = {
     is_favorite: boolean
     task: string
     time: string
-    image:string
+    image: string
+}
+
+export type MainIcon = {
+    icon: "houseIcon" | "favoriteIcon" | "trashIcon" | "doneIcon"
 }

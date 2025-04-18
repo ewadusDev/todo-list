@@ -13,7 +13,7 @@ const Favorite = ({ todo }: { todo?: TodoProps }) => {
     if (todo === undefined) return (<>Not found todo data</>)
 
     return (
-        <form className="pr-16"
+        <form className=""
             action={formAction} >
             <input type="hidden" name="id" value={todo.id} />
             <input type="hidden" name="is_favorite" value={(!todo.is_favorite).toString()} />

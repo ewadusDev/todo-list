@@ -198,6 +198,18 @@ export async function getTodos(query: string, userId: string) {
 
 }
 
+export async function getForitedTodos(query: string, userId: string) {
+
+    try {
+        const response = await pool.query('SELECT * FROM todos WHERE is_favorite = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
+        return response.rows;
+    } catch (error) {
+        console.error('❌ DB Error:', error);
+        throw new Error('Database query failed');
+    }
+
+}
+
 
 export async function deleteTodo(id: string) {
     try {

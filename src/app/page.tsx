@@ -33,7 +33,7 @@ export default async function Home(props: { searchParams?: Promise<{ query: stri
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
         <LeftSidebar />
-        <MainWorkPlace todos={fetchTodos} />
+        <MainWorkPlace todos={fetchTodos} title="Tasks" icon={"houseIcon"} />
       </div>
     </main>
   );

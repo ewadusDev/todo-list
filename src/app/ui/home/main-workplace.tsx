@@ -10,11 +10,13 @@ import UncompletedLists from "./new-uncompleted-lists";
 import RightSideBar from "../sidebar/right-sidebar";
 import { TodoProps } from "@/types/base"
 
+
+
 const sortAsc = (items: TodoProps[]) => [...items].sort((a, b) => Number(a.time) - Number(b.time))
 const sortDesc = (items: TodoProps[]) => [...items].sort((a, b) => Number(b.time) - Number(a.time))
 
 
-const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
+const MainWorkPlace = ({ todos, title, icon }: { todos: TodoProps[], title: string, icon: "houseIcon" | "favoriteIcon" | "trashIcon" | "doneIcon" }) => {
     const [isShownComplete, setIsShownComplete] = useState<boolean>(true)
     const [isSorted, setIsSorted] = useState<boolean>(false)
     const [lists, setLists] = useState<TodoProps[]>(sortDesc(todos))
@@ -42,7 +44,7 @@ const MainWorkPlace = ({ todos }: { todos: TodoProps[] }) => {
     return (
         <>
             <section className="w-full h-full flex flex-col pt-5 px-14" >
-                <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} />
+                <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} title={title} icon={icon} />
                 {/* Adding Todo */}
                 <TaskAddForm />
                 {/* Display Todos */}

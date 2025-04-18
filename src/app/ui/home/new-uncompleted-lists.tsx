@@ -15,7 +15,7 @@ const UncompletedLists = ({ unComlpeteTodos, setSelectedData, setIsActiveRightSi
         <ul>
             {unComlpeteTodos.map((todo) => {
                 return (
-                    <li key={todo.id} className="w-full h-[52px] rounded-[3px] flex flex-row justify-between items-center overflow-hidden px-4 bg-white shadow-md border-y-1 border-gray-200 gap-5 hover:bg-gray-100"
+                    <li key={todo.id} className="w-full h-[52px] rounded-[3px] flex flex-row justify-between items-center overflow-hidden px-4 bg-white shadow-md border-y-1 border-gray-200 gap-5 hover:bg-gray-100 pr-20"
                         onClick={() => handleClick(todo)}
                     >
                         <div className="flex gap-5 w-full">
