@@ -8,6 +8,7 @@ import { TodoProps } from "@/types/base"
 
 const Favorite = ({ todo }: { todo?: TodoProps }) => {
     const initialState: State = { errors: {}, message: '' }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [state, formAction] = useActionState(updateFavorite, initialState)
 
     if (todo === undefined) return (<>Not found todo data</>)

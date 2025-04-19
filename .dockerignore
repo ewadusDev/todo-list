@@ -1,0 +1,10 @@
+node_modules
+.next
+.env
+.env.local
+Dockerfile
+docker-compose.yml
+.vscode
+package-lock.json
+
+src/app/seed/page.tsx
