@@ -1,7 +1,7 @@
 import Navbar from "../ui/navbar"
 import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/auth-options"
 
 
 

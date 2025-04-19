@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import bcrypt from "bcryptjs";
 import pool from "@/lib/db";
 import * as uuid from "uuid";
 
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
     const { email, password, confirmPassword, firstname, lastname } = await request.json()
     const hashPassword = await bcrypt.hash(password, 10)
 

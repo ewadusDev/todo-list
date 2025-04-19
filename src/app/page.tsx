@@ -1,7 +1,7 @@
 import MainWorkPlace from "./ui/home/workplace";
 import Navbar from "./ui/navbar";
 import LeftSidebar from "./ui/sidebar/left-sidebar";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth-options"
 import { getServerSession } from "next-auth/next"
 import { getTodos } from "@/lib/actions";
 
