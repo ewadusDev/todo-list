@@ -193,6 +193,7 @@ export async function getTodos(query: string, userId: string) {
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);
+        await seedDatabase()
         throw new Error('Database query failed');
     }
 

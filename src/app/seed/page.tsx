@@ -1,9 +1,9 @@
-import { seedDatabase } from "@/lib/actions"
+// import { seedDatabase } from "@/lib/actions"
 
 
 
 const SeedDatabase = async () => {
-    await seedDatabase()
+    // await seedDatabase()
     return (
         <div>Seed in to Database</div>
     )

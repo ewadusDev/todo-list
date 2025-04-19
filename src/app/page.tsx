@@ -26,7 +26,6 @@ export default async function Home(props: { searchParams?: Promise<{ query: stri
 
   const fetchTodos = await getTodos(query || '', session!.user!.id)
 
-  // console.log("fetchTodos", fetchTodos)
 
   return (
     <main>

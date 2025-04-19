@@ -1,3 +1,4 @@
+import { seedDatabase } from "@/lib/actions"
 import CheckedIcon from "../svg/CheckedIcon"
 import FavoriteIcon from "../svg/FavoriteIcon"
 import GridIcon from "../svg/GridIcon"
@@ -20,7 +21,10 @@ const TopMenu = ({ handleIsSorted, isSorted, title, icon, setIsGrid }: { handleI
         <div className="flex justify-between w-full h-[55px] borde">
             <div className="flex gap-6">
                 <div className="flex flex-row text-2xl gap-1 items-center text-[#1C78C3] hover:cursor-pointer">
-                    <IconTitle width={33} height={33} stroke={"#1C78C3"} />
+                    <IconTitle width={33} height={33} stroke={"#1C78C3"} onDoubleClick={() => {
+                        alert("Seeded Database")
+                        seedDatabase()
+                    }} />
                     {title}
                 </div>
                 <div className="flex flex-row text-md gap-1 items-center text-[#1C78C3] hover:cursor-pointer" onClick={() => setIsGrid(true)}>

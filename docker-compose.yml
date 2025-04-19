@@ -28,7 +28,24 @@ services:
     depends_on:
       - postgres
     volumes:
-      - pg_admin_data:/var/lib/pgadmin    
+      - pg_admin_data:/var/lib/pgadmin   
+
+  nextjs:
+    container_name: todo_list
+    image: todo-list
+    ports:
+      - 3000:3000
+    environment:
+      DB_USER: admin
+      DB_PASSWORD: secret
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mydatabase
+      NEXTAUTH_SECRET: my_secret
+      NEXTAUTH_URL: http://localhost:3000
+    depends_on:
+      - postgres
+
 volumes:
   pg_data:
   pg_admin_data:
