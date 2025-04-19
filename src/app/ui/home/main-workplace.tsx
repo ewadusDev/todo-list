@@ -24,6 +24,7 @@ const MainWorkPlace = ({ todos, title, icon }: { todos: TodoProps[], title: stri
     const completedTodos = lists.filter((todo) => todo.is_done === true)
     const [isActiveRightSideBar, setIsActiveRightSideBar] = useState<boolean>(false)
     const [selectedData, setSelectedData] = useState<TodoProps | null>(null)
+    const [isGrid, setIsGrid] = useState<boolean>(false)
 
     const handleShowComplete = () => setIsShownComplete(!isShownComplete)
 
@@ -44,22 +45,21 @@ const MainWorkPlace = ({ todos, title, icon }: { todos: TodoProps[], title: stri
     return (
         <>
             <section className="w-full h-full flex flex-col pt-5 px-14" >
-                <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} title={title} icon={icon} />
+                <TopMenu handleIsSorted={handleIsSorted} isSorted={isSorted} title={title} icon={icon} setIsGrid={setIsGrid} />
                 {/* Adding Todo */}
                 <TaskAddForm />
                 {/* Display Todos */}
-
                 <div className="pt-2 h-full overflow-y-scroll">
                     <UncompletedTitle unComlpeteTodos={unComlpeteTodos} />
                     <div className="">
-                        <UncompletedLists unComlpeteTodos={unComlpeteTodos} setSelectedData={setSelectedData} setIsActiveRightSideBar={setIsActiveRightSideBar} />
+                        <UncompletedLists unComlpeteTodos={unComlpeteTodos} setSelectedData={setSelectedData} setIsActiveRightSideBar={setIsActiveRightSideBar} isGrid={isGrid} />
                     </div>
                     {/* Completed Section */}
                     <div>
                         <CompletedTitle isShownComplete={isShownComplete} completedTodos={completedTodos} handleShowComplete={handleShowComplete} />
                         {isShownComplete && (
                             <div>
-                                <CompletedLists completedTodos={completedTodos} setIsActiveRightSideBar={setIsActiveRightSideBar} setSelectedData={setSelectedData} />
+                                <CompletedLists completedTodos={completedTodos} setIsActiveRightSideBar={setIsActiveRightSideBar} setSelectedData={setSelectedData} isGrid={isGrid} />
                             </div>
                         )}
                     </div>
