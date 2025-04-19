@@ -3,7 +3,7 @@ import Navbar from "../ui/navbar"
 import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
-import MainWorkPlace from "../ui/home/main-workplace"
+import MainWorkPlace from "../ui/home/workplace"
 import { getForitedTodos } from "@/lib/actions"
 
 

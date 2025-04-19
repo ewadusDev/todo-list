@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import TopMenu from "./new-top-menu";
-import TaskAddForm from "./new-task-add-form";
-import CompletedTitle from "./new-completed-title";
-import CompletedLists from "./new-completed-lists";
-import UncompletedTitle from "./new-uncompleted-title";
-import UncompletedLists from "./new-uncompleted-lists";
+import TopMenu from "./top-menu";
+import TaskAddForm from "./task-add-form";
+import CompletedTitle from "./completed-title";
+import CompletedLists from "./completed-lists";
+import UncompletedTitle from "./uncompleted-title";
+import UncompletedLists from "./uncompleted-lists";
 import RightSideBar from "../sidebar/right-sidebar";
 import { TodoProps } from "@/types/base"
 

@@ -2,10 +2,10 @@
 
 import UploadBox from "./upload-box";
 import ColapIcon from "../svg/ColapIcon";
-import Trash from "../home/new-trash";
-import TaskCheckbox from "../home/new-task-checkbox";
-import TaskEdit from "../home/new-task-edit";
-import Favorite from "../home/new-favorite";
+import Trash from "../home/trash-btn";
+import TaskCheckbox from "../home/task-checkbox";
+import TaskEdit from "../home/task-edit";
+import Favorite from "../home/favorite-btn";
 import { TodoProps } from "@/types/base"
 import { formatDate } from "@/lib/utils";
 

@@ -4,7 +4,7 @@ import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 import { getDoneTodos } from "@/lib/actions"
-import MainWorkPlace from "../ui/home/main-workplace"
+import MainWorkPlace from "../ui/home/workplace"
 
 
 const DonePage = async (props: { searchParams?: Promise<{ query: string }> }) => {

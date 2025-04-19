@@ -1,4 +1,3 @@
-
 import CheckedIcon from "../svg/CheckedIcon"
 import FavoriteIcon from "../svg/FavoriteIcon"
 import GridIcon from "../svg/GridIcon"

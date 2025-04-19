@@ -1,4 +1,4 @@
-import MainWorkPlace from "./ui/home/main-workplace";
+import MainWorkPlace from "./ui/home/workplace";
 import Navbar from "./ui/navbar";
 import LeftSidebar from "./ui/sidebar/left-sidebar";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
