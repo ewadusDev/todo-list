@@ -1,38 +1,38 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
     image: postgres:17.4
     container_name: my_postgres
-    volumes: 
+    volumes:
       - pg_data:/var/lib/postgresql/data
     restart: always
     ports:
       - 5432:5432
     environment:
-       POSTGRES_USER: admin
-       POSTGRES_PASSWORD: secret
-       POSTGRES_DB: mydatabase
-       POSTGRES_PRISMA_URL: postgresql://admin:secret@postgres:5432/mydatabase
-       POSTGRES_URL_NON_POOLING: postgresql://admin:secret@postgres:5432/mydatabase
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: mydatabase
+      POSTGRES_PRISMA_URL: postgresql://admin:secret@postgres:5432/mydatabase
+      POSTGRES_URL_NON_POOLING: postgresql://admin:secret@postgres:5432/mydatabase
 
   pgadmin:
     image: dpage/pgadmin4:9.1.0
     container_name: my_pgadmin
     restart: always
     environment:
-       PGADMIN_DEFAULT_EMAIL: admin@example.com
-       PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
-      - 5050:80 
+      - 5050:80
     depends_on:
       - postgres
     volumes:
-      - pg_admin_data:/var/lib/pgadmin   
+      - pg_admin_data:/var/lib/pgadmin
 
   nextjs:
-    container_name: todo_list
-    image: todo-list
+    container_name: todo-app
+    image: ewadus/todo-app:1.0.0
     ports:
       - 3000:3000
     environment:
@@ -45,6 +45,19 @@ services:
       NEXTAUTH_URL: http://localhost:3000
     depends_on:
       - postgres
+
+  cron-worker:
+    container_name: cron_worker
+    image: ewadus/todo-app-cron:1.0.0
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DB_USER: admin
+      DB_PASSWORD: secret
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mydatabase
 
 volumes:
   pg_data:
