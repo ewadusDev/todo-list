@@ -151,6 +151,7 @@ export const seedDatabase = async () => {
               time BIGINT NOT NULL,
               is_done BOOLEAN DEFAULT FALSE,
               is_favorite BOOLEAN DEFAULT FALSE,
+              is_deleted BOOLEAN DEFAULT FALSE,
               image TEXT,
               uid UUID REFERENCES users(id)
             );
@@ -169,8 +170,8 @@ export const seedDatabase = async () => {
 
         for (const todo of sampleTodos) {
             await pool.query(
-                'INSERT INTO todos (id, task, time, is_done , is_favorite, uid) VALUES ($1, $2, $3, $4, $5, $6)',
-                [todo.id, todo.task, todo.time, todo.is_done, todo.is_favorite, userId]
+                'INSERT INTO todos (id, task, time, is_done, is_favorite, is_deleted, uid) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+                [todo.id, todo.task, todo.time, todo.is_done, todo.is_favorite, todo.is_deleted, userId]
             );
         }
         console.log('✅ Seeded todos successfully!');
@@ -226,7 +227,8 @@ export async function getDoneTodos(query: string, userId: string) {
 
 export async function deleteTodo(id: string) {
     try {
-        await pool.query('DELETE FROM todos WHERE id = $1', [id]);
+        // await pool.query('DELETE FROM todos WHERE id = $1', [id]);
+        await pool.query('UPDATE todos SET is_deleted = true WHERE id = $1', [id]);
         revalidatePath('/');
         console.log('✅ Todo deleted successfully!');
     } catch (err) {
