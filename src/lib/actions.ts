@@ -190,7 +190,7 @@ export const seedDatabase = async () => {
 export async function getTodos(query: string, userId: string) {
 
     try {
-        const response = await pool.query('SELECT * FROM todos WHERE task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
+        const response = await pool.query('SELECT * FROM todos WHERE is_deleted = false AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);
@@ -203,7 +203,19 @@ export async function getTodos(query: string, userId: string) {
 export async function getForitedTodos(query: string, userId: string) {
 
     try {
-        const response = await pool.query('SELECT * FROM todos WHERE is_favorite = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
+        const response = await pool.query('SELECT * FROM todos WHERE is_deleted = false AND is_favorite = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
+        return response.rows;
+    } catch (error) {
+        console.error('❌ DB Error:', error);
+        throw new Error('Database query failed');
+    }
+
+}
+
+export async function getTrashTodos(query: string, userId: string) {
+
+    try {
+        const response = await pool.query('SELECT * FROM todos WHERE is_deleted = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);
@@ -215,7 +227,7 @@ export async function getForitedTodos(query: string, userId: string) {
 export async function getDoneTodos(query: string, userId: string) {
 
     try {
-        const response = await pool.query('SELECT * FROM todos WHERE is_done = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
+        const response = await pool.query('SELECT * FROM todos WHERE is_deleted = false AND is_done = true AND task LIKE $1 AND uid = $2', [`%${query}%`, userId]);
         return response.rows;
     } catch (error) {
         console.error('❌ DB Error:', error);

@@ -2,11 +2,13 @@ import Navbar from "../ui/navbar"
 import LeftSidebar from "../ui/sidebar/left-sidebar"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth-options"
+import { getTrashTodos } from "@/lib/actions"
+import MainWorkPlace from "../ui/home/workplace"
 
 
-
-
-const TrashPage = async () => {
+const TrashPage = async (props: { searchParams?: Promise<{ query: string }> }) => {
+  const searchParams = await props.searchParams
+  const query = searchParams?.query || ''
   const session = await getServerSession(authOptions)
 
   if (!session || !session.user?.id) {
@@ -20,13 +22,15 @@ const TrashPage = async () => {
 
     )
   }
+
+  const fetchTodos = await getTrashTodos(query || '', session!.user!.id)
+
   return (
     <main>
       <Navbar />
       <div className="relative h-[calc(100vh-48px)] bg-[#F5F5F5] flex flex-row">
         <LeftSidebar />
-
-        สัส รอทำกับเมิงละกัน
+        <MainWorkPlace todos={fetchTodos} title="Favorites" icon={"trashIcon"} />
       </div>
     </main>
   )
