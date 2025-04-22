@@ -32,7 +32,7 @@ services:
 
   nextjs:
     container_name: todo-app
-    image: ewadus/todo-app:1.0.0
+    image: ewadus/todo-app:1.1.0
     ports:
       - 3000:3000
     environment:
@@ -58,6 +58,7 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: mydatabase
+      CRON_DELETE_TIME: 50 seconds
 
 volumes:
   pg_data:
