@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["es5", "dom"],
+    "sourceMap": true,
+    "types": ["cypress", "node"],
+    "module": "commonjs", // or "esnext"
+    "strict": true
+  },
+  "include": ["**/*.ts"]
+}
