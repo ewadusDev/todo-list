@@ -1,0 +1,25 @@
+{
+  "selectors": {
+    "main_input_task": "input[placeholder='Add new task']",
+    "num_task": "section > div:nth-child(3) p",
+    "task_list": "ul form input[name='task']",
+    "task_checkbox": "ul form span input[type='checkbox']"
+  },
+  "one_task": {
+    "TS001": {
+      "TC001": {
+        "task": "TaskA1 {enter}",
+        "num_task": "Title (1)"
+      },
+      "TC002": {
+        "checkbox": true,
+        "num_task": "Completed (1)"
+      },
+      "TC003": {
+        "num_task": "Completed (1)",
+        "num_wait": 51000,
+        "num_task_latest": "Completed (0)"
+      }
+    }
+  }
+}

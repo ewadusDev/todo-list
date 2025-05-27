@@ -1,0 +1,40 @@
+{
+  "login_page": {
+    "app_name": {
+      "selector": "h2",
+      "message": "To-Do List"
+    },
+    "header": {
+      "selector": "h1",
+      "message": "Log in"
+    },
+    "login_input": {
+      "email_selector": "input[placeholder='Email']",
+      "password_selector": "input[type='password']"
+    },
+    "helping_text": "Please do not use the actual data for registration.",
+    "login_btn": {
+      "selector": "form > div:nth-child(4) > button",
+      "message": "Log in"
+    },
+    "create_acc_btn": {
+      "selector": "form > div:nth-child(4) > a"
+    }
+  },
+  "create_page": {
+    "headline": {
+      "selector": "h1",
+      "message": "Create an account"
+    },
+    "box_left": "section > div > div:nth-child(1)",
+    "firstname_input": "input[name='firstname']",
+    "lastname_input": "input[name='lastname']",
+    "email_input": "input[name='email']",
+    "password_input": "input[name='password']",
+    "cfpassword_input": "input[name='cfpassword']",
+    "box_right": "form:nth-child(1)",
+    "create_acc_btn": {
+      "selector": "button[type='submit']"
+    }
+  }
+}
