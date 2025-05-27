@@ -1,34 +1,4 @@
-Features
-- Add Task  ✅
-- Checkbox   ✅
-- Delete Task  ✅
-- Edit Task  ✅
-- Sorting Task ✅
-- Search Task ✅
-- Authentication
-  - sign in  ✅
-  - sign out ✅
-  - middleware  ✅
-- improve ui
-  - theme
-  - responsive
-
-Infra
-- postgres  ✅
-- dockerize image ✅
-- nginx
-- redis
-
-Testing
-  - Unit Test
-    - Jest https://www.youtube.com/watch?v=rBpzxTD_9T0
-  - E2E
-    - Playwright
-  - Performance
-    - k6
-
-
-.evn.local
+.evn file
 
 DB_USER=admin
 DB_HOST=localhost
@@ -39,4 +9,32 @@ DB_PORT=5432
 NEXTAUTH_SECRET=my_secret
 NEXTAUTH_URL=http://localhost:3000
 
+# Deploy application
 
+1. Docker compose
+
+```bash
+docker compose up -d
+```
+
+2. Access Application
+
+```
+localhost:3000
+```
+
+# Run E2E Testing
+
+1. Install dependencies
+
+```bash
+npm inistall
+```
+
+2. Run Test
+
+```bash
+npx cypress open
+# or
+npx cypress run
+```
